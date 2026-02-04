@@ -52,25 +52,21 @@ const services = [
   }
 ]
 
-// Squelette pour vos futurs PDFs
 const documents = [
   {
-    title: "Livret d'accueil",
+    title: "Livret d'accueil Patient",
     category: "Information",
     description: "Consultez notre guide complet pour comprendre votre parcours de soin et nos engagements qualité.",
-    image: "/images/pdf-placeholder-1.jpg" // À remplacer par l'image de la couverture du PDF
   },
   {
     title: "Manuel de prélèvements",
     category: "Technique",
     description: "Toutes les recommandations pré-analytiques destinées aux professionnels de santé.",
-    image: "/images/pdf-placeholder-2.jpg"
   },
   {
     title: "Accréditation COFRAC",
     category: "Qualité",
     description: "Portée d'accréditation et certificats de conformité de notre plateau technique.",
-    image: "/images/pdf-placeholder-3.jpg"
   }
 ]
 
@@ -78,7 +74,7 @@ export function ServicesSection() {
   const [index, setIndex] = useState(0)
   const [docIndex, setDocIndex] = useState(0)
 
-  // Changement automatique pour les services (5s)
+  // Auto-play Bloc 1 (Activités)
   useEffect(() => {
     const srvTimer = setInterval(() => {
       setIndex((prev) => (prev + 1) % services.length)
@@ -86,7 +82,7 @@ export function ServicesSection() {
     return () => clearInterval(srvTimer)
   }, [])
 
-  // Changement automatique pour les documents (6s)
+  // Auto-play Bloc 2 (Documents)
   useEffect(() => {
     const docTimer = setInterval(() => {
       setDocIndex((prev) => (prev + 1) % documents.length)
@@ -107,13 +103,13 @@ export function ServicesSection() {
             <div className="w-16 h-1 bg-primary/30 mx-auto rounded-full" />
           </div>
 
-          <div className="relative min-h-[600px] lg:min-h-[500px] flex items-center">
+          <div className="relative min-h-[550px] lg:min-h-[500px] flex items-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center w-full"
               >
@@ -126,104 +122,110 @@ export function ServicesSection() {
                       className="object-cover"
                       priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/20 to-transparent" />
                   </div>
                 </div>
 
                 <div className="w-full lg:w-2/5 space-y-6 text-center lg:text-left">
-                  <div className="flex flex-col">
-                    <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-4">
-                      Expertise {index + 1} / {services.length}
-                    </span>
-                    <h3 className="text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
-                      {services[index].title}
-                    </h3>
-                  </div>
+                  <span className="text-primary font-bold text-xs uppercase tracking-[0.3em]">
+                    Expertise {index + 1} / {services.length}
+                  </span>
+                  <h3 className="text-3xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                    {services[index].title}
+                  </h3>
                   <p className="text-lg text-slate-500 leading-relaxed min-h-[80px]">
                     {services[index].description}
                   </p>
+                  
+                  {/* Petit indicateur de ligne pour le service actif */}
                   <div className="pt-6 flex justify-center lg:justify-start">
-                    <motion.div initial={{ width: 0 }} animate={{ width: 48 }} className="h-px bg-primary" />
+                    <motion.div 
+                      key={`line-${index}`}
+                      initial={{ width: 0 }} 
+                      animate={{ width: 48 }} 
+                      className="h-px bg-primary" 
+                    />
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
+          {/* RETOUR DES BARRES DE NAVIGATION POUR LES SERVICES */}
           <div className="mt-16 flex justify-center gap-3">
             {services.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setIndex(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${index === i ? "w-12 bg-primary" : "w-2 bg-slate-200 hover:bg-slate-300"}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === i ? "w-12 bg-primary" : "w-2 bg-slate-200 hover:bg-slate-300"
+                }`}
+                aria-label={`Aller au service ${i + 1}`}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- SECTION 2 : DOCUMENTS PDF (Animation Verticale) --- */}
-      <section className="py-24 lg:py-32 bg-slate-50 overflow-hidden border-t border-slate-100">
+      {/* --- SECTION 2 : DOCUMENTS (Vertical Slide) --- */}
+      <section className="py-24 lg:py-32 bg-slate-50 overflow-hidden border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           
-          <div className="text-center mb-16">
+          <div className="text-center mb-24">
             <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Espace <span className="text-primary italic font-light">Documentaire</span>
             </h2>
-            <div className="w-16 h-1 bg-primary/30 mx-auto rounded-full" />
+            <p className="text-slate-400 font-medium italic underline decoration-primary/30 underline-offset-8">Ressources & Guides Techniques</p>
           </div>
 
-          <div className="relative min-h-[600px] lg:min-h-[500px] flex items-center justify-center">
+          <div className="relative h-[650px] md:h-[500px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={docIndex}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 120 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col lg:flex-row-reverse gap-12 lg:gap-24 items-center w-full max-w-5xl"
+                exit={{ opacity: 0, y: -120 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 70, 
+                  damping: 15, 
+                  mass: 1 
+                }}
+                className="absolute inset-0 flex flex-col lg:flex-row items-center gap-12 lg:gap-24 w-full"
               >
-                {/* Image du PDF (Verticale/Portrait) */}
-                <div className="w-full lg:w-2/5 flex justify-center">
-                  <div className="relative h-[400px] w-[280px] md:h-[500px] md:w-[350px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden group">
-                    {/* Placeholder si l'image n'existe pas encore */}
-                    <div className="absolute inset-0 bg-slate-100 flex items-center justify-center text-slate-300">
-                      <svg className="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                {/* Image du PDF */}
+                <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
+                  <div className="relative h-[380px] w-[270px] md:h-[500px] md:w-[350px] bg-white rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-white flex flex-col items-center justify-center p-10 text-center">
+                       <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-6">
+                          <svg className="w-8 h-8 text-primary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                       </div>
+                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300 mb-2">PDF Prévisualisation</p>
+                       <p className="text-slate-900 font-bold px-4">{documents[docIndex].title}</p>
                     </div>
-                    {/* Décommenter quand vous aurez les images :
-                    <Image
-                      src={documents[docIndex].image}
-                      alt={documents[docIndex].title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    /> 
-                    */}
-                    <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.05)]" />
                   </div>
                 </div>
 
                 {/* Texte du PDF */}
-                <div className="w-full lg:w-3/5 space-y-6 text-center lg:text-left">
-                  <div className="flex flex-col">
-                    <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-4">
+                <div className="w-full lg:w-3/5 text-center lg:text-left space-y-8">
+                  <div className="inline-block px-4 py-1.5 bg-primary/10 rounded-full">
+                    <span className="text-primary font-bold text-xs uppercase tracking-widest">
                       {documents[docIndex].category}
                     </span>
-                    <h3 className="text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
-                      {documents[docIndex].title}
-                    </h3>
                   </div>
-                  <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
+                  
+                  <h3 className="text-4xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+                    {documents[docIndex].title}
+                  </h3>
+                  
+                  <p className="text-xl text-slate-500 leading-relaxed max-w-xl">
                     {documents[docIndex].description}
                   </p>
                   
-                  <div className="pt-8">
-                    <button className="inline-flex items-center justify-center px-8 py-4 bg-slate-900 text-white rounded-full font-medium transition-all hover:bg-primary hover:shadow-lg hover:shadow-primary/20 group">
-                      Télécharger le document
-                      <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
+                  <div className="pt-4">
+                    <button className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-primary transition-all active:scale-95 shadow-xl shadow-slate-900/10">
+                      Consulter le PDF
                     </button>
                   </div>
                 </div>
@@ -231,13 +233,15 @@ export function ServicesSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation PDF */}
-          <div className="mt-12 flex justify-center gap-3">
+          {/* NAVIGATION POUR LES DOCUMENTS (Barres horizontales aussi) */}
+          <div className="mt-20 flex justify-center gap-3">
             {documents.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setDocIndex(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${docIndex === i ? "w-8 bg-slate-400" : "w-2 bg-slate-200"}`}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  docIndex === i ? "w-10 bg-slate-400" : "w-2 bg-slate-200"
+                }`}
               />
             ))}
           </div>
