@@ -29,8 +29,8 @@ export function ServicesSection() {
   const [activeSrv, setActiveSrv] = useState(0)
   const [activeDoc, setActiveDoc] = useState(0)
 
-  // Configuration du ressort pour une fluidité maximale sans "sauts"
-  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
+  // Configuration plus réactive : stiffness augmenté et damping réduit pour moins de latence
+  const springConfig = { stiffness: 150, damping: 25, restDelta: 0.001 }
 
   // -- LOGIQUE SERVICES --
   const { scrollYProgress: srvScrollRaw } = useScroll({
@@ -63,8 +63,9 @@ export function ServicesSection() {
   return (
     <div className="flex flex-col bg-white">
       
-      {/* --- SECTION 1 : SERVICES (STICKY) --- */}
-      <section ref={servicesRef} className="relative h-[900vh]">
+      {/* --- SECTION 1 : SERVICES --- */}
+      {/* Réduit à 500vh pour un défilement ~2x plus rapide */}
+      <section ref={servicesRef} className="relative h-[500vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-8 md:mb-12">
@@ -78,10 +79,10 @@ export function ServicesSection() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSrv}
-                  initial={{ opacity: 0, x: 30 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row gap-6 md:gap-24 items-center w-full"
                 >
                   <div className="w-full lg:w-3/5">
@@ -113,8 +114,9 @@ export function ServicesSection() {
         </div>
       </section>
 
-      {/* --- SECTION 2 : DOCUMENTS (STICKY VERTICAL) --- */}
-      <section ref={docsRef} className="relative h-[400vh]">
+      {/* --- SECTION 2 : DOCUMENTS --- */}
+      {/* Réduit à 250vh pour les documents (très rapide) */}
+      <section ref={docsRef} className="relative h-[250vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-10 md:mb-16">
@@ -128,10 +130,10 @@ export function ServicesSection() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeDoc}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row items-center gap-8 md:gap-24 w-full"
                 >
                   <div className="w-full lg:w-2/5 flex justify-center">
