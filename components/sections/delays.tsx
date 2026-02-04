@@ -1,113 +1,127 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { Clock, FileCheck, Truck, AlertCircle } from "lucide-react"
+import { useState, useEffect } from "react"
+import { motion, useMotionValue, useTransform, animate } from "framer-motion"
+import { Clock, FileCheck, Truck, AlertCircle, Package, Calendar } from "lucide-react"
+
+// Composant de compteur animé pour les chiffres
+const Counter = ({ value, duration = 2 }: { value: string, duration?: number }) => {
+  const count = useMotionValue(0)
+  const rounded = useTransform(count, (latest) => Math.round(latest))
+  const [displayValue, setDisplayValue] = useState("0")
+
+  useEffect(() => {
+    const numericValue = parseInt(value)
+    if (isNaN(numericValue)) {
+      setDisplayValue(value)
+      return
+    }
+
+    const controls = animate(count, numericValue, { duration })
+    return rounded.onChange((v) => setDisplayValue(v.toString()))
+  }, [value, count, duration, rounded])
+
+  return <span>{displayValue}</span>
+}
 
 const features = [
-  {
-    icon: Clock,
-    title: "Biopsies",
-    value: "3 jours",
-    description: "Délai standard pour les biopsies simples",
-  },
-  {
-    icon: FileCheck,
-    title: "Pièces opératoires",
-    value: "5 jours",
-    description: "Traitement complet avec analyse détaillée",
-  },
-  {
-    icon: AlertCircle,
-    title: "Circuit URGENT",
-    value: "Priorisé",
-    description: "Prélèvements critiques traités en priorité",
-  },
-  {
-    icon: Truck,
-    title: "Logistique",
-    value: "Incluse",
-    description: "Coursier et transport sécurisé disponibles",
-  },
+  { icon: Clock, title: "Biopsies", value: "3", unit: "jours", description: "Délai standard", color: "text-blue-600", pulse: false },
+  { icon: FileCheck, title: "Pièces opératoires", value: "5", unit: "jours", description: "Analyse détaillée", color: "text-emerald-600", pulse: false },
+  { icon: AlertCircle, title: "Circuit URGENT", value: "Priorisé", unit: "", description: "Traitement critique", color: "text-orange-600", pulse: true },
+  { icon: Truck, title: "Logistique", value: "Incluse", unit: "", description: "Transport sécurisé", color: "text-purple-600", pulse: false },
 ]
 
 export function DelaysSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28 bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`text-center mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance">
-            Délais & Transparence
-          </h2>
-          <p className="text-lg opacity-80 max-w-2xl mx-auto">
-            Nous nous engageons sur des délais clairs et les respectons. Transparence à chaque étape.
-          </p>
+    /* Réduction du padding vertical (py-16 au lieu de py-24) */
+    <section className="py-16 lg:py-16 bg-slate-50/80 border-y border-slate-200/60 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#022c37 1px, transparent 1px)', size: '20px 20px' }} />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Réduction de la marge basse du header (mb-12 au lieu de mb-20) */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
+              Délais & <span className="text-primary">Transparence</span>
+            </h2>
+            <p className="text-lg text-slate-600">
+              Chaque minute compte. Nous optimisons nos flux pour vous livrer des résultats fiables dans les meilleurs délais.
+            </p>
+          </motion.div>
+          <div className="hidden md:block w-24 h-1.5 bg-primary/20 rounded-full mb-4" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className={`text-center p-8 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm transition-all duration-500 hover:bg-primary-foreground/20 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200/50 group hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
             >
-              <div className="w-14 h-14 rounded-full bg-primary-foreground/20 flex items-center justify-center mx-auto mb-4">
-                <feature.icon className="w-7 h-7" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`p-3 rounded-2xl bg-slate-50 group-hover:bg-white transition-colors relative`}>
+                  <feature.icon size={24} className={`${feature.color} relative z-10`} />
+                  {feature.pulse && (
+                    <span className="absolute inset-0 rounded-2xl bg-orange-400 animate-ping opacity-20" />
+                  )}
+                </div>
+                <h3 className="font-bold text-slate-800 text-xs uppercase tracking-widest">{feature.title}</h3>
               </div>
-              <p className="text-4xl font-bold mb-2">{feature.value}</p>
-              <p className="font-semibold mb-1">{feature.title}</p>
-              <p className="text-sm opacity-70">{feature.description}</p>
-            </div>
+
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-5xl font-light text-slate-900 leading-none tracking-tighter">
+                  <Counter value={feature.value} />
+                </span>
+                {feature.unit && (
+                  <span className="text-sm font-bold text-primary uppercase">{feature.unit}</span>
+                )}
+              </div>
+              
+              <p className="text-slate-500 text-sm mb-6">{feature.description}</p>
+              
+              <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.5, delay: 0.5 + (index * 0.1) }}
+                  className={`h-full bg-gradient-to-r from-transparent via-primary/40 to-primary`}
+                />
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        <div
-          className={`mt-16 p-8 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm transition-all duration-700 delay-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+        {/* Réduction de la marge haute du footer bar (mt-12 au lieu de mt-20) et du padding py-6 */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 flex flex-wrap justify-center gap-x-12 gap-y-6 py-8 border-t border-slate-200"
         >
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <p className="text-sm uppercase tracking-wider opacity-70 mb-2">Ramassage</p>
-              <p className="font-semibold">Coursier disponible</p>
+          {[
+            { icon: Truck, label: "Logistique", text: "Coursier disponible" },
+            { icon: Package, label: "Kits", text: "Prélèvements prêts" },
+            { icon: Calendar, label: "Réception", text: "Horaires étendus" }
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-3 group">
+              <item.icon className="text-primary/40 group-hover:text-primary transition-colors" size={20} />
+              <div className="flex flex-col">
+                <span className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">{item.label}</span>
+                <span className="text-sm font-semibold text-slate-700">{item.text}</span>
+              </div>
             </div>
-            <div>
-              <p className="text-sm uppercase tracking-wider opacity-70 mb-2">Kits</p>
-              <p className="font-semibold">Prélèvement prêts à l{"'"}emploi</p>
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-wider opacity-70 mb-2">Réception</p>
-              <p className="font-semibold">Horaires étendus</p>
-            </div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )

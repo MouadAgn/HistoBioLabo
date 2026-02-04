@@ -20,7 +20,8 @@ export function HeroSection() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Text content */}
+          
+          {/* 1. Text content - Apparaît en premier sur mobile */}
           <div
             className={`space-y-6 lg:space-y-8 transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -32,13 +33,13 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-              HistoBioLab
+              HistoBioLab – Anatomie pathologique
               <span className="block text-primary">Double lecture,</span>
-              <span className="block text-accent">haute fiabilite</span>
+              <span className="block text-accent">haute fiabilité</span>
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Des delais courts, des resultats clairs. Votre laboratoire de confiance pour l{"'"}anatomie pathologique a Agadir.
+              Des délais courts, des résultats clairs. Votre laboratoire de confiance pour l{"'"}anatomie pathologique à Agadir.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -74,7 +75,7 @@ export function HeroSection() {
               </div>
               <div>
                 <p className="text-2xl sm:text-3xl font-bold text-primary">5</p>
-                <p className="text-xs sm:text-sm text-muted-foreground">jours pieces</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">jours pièces</p>
               </div>
               <div>
                 <p className="text-2xl sm:text-3xl font-bold text-primary">100%</p>
@@ -83,9 +84,9 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Large Animation */}
+          {/* 2. Large Animation - Apparaît en DESSOUS sur mobile (flux naturel) et à DROITE sur desktop */}
           <div
-            className={`relative transition-all duration-1000 delay-300 order-first lg:order-last ${
+            className={`relative mt-12 lg:mt-0 transition-all duration-1000 delay-300 lg:order-last ${
               isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
           >
@@ -99,7 +100,8 @@ export function HeroSection() {
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
           <path 
             d="M0 120L48 110C96 100 192 80 288 70C384 60 480 60 576 65C672 70 768 80 864 85C960 90 1056 90 1152 85C1248 80 1344 70 1392 65L1440 60V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0Z" 
-            fill="var(--background)"
+            fill="currentColor"
+            className="text-background"
           />
         </svg>
       </div>

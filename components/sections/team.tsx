@@ -1,28 +1,37 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Building2, Handshake, FileDown, Monitor } from "lucide-react"
+import { motion } from "framer-motion"
+import { Building2, Handshake, FileDown, Monitor, CheckCircle2, ChevronRight } from "lucide-react"
 
 const features = [
   {
     icon: Handshake,
     title: "Partenariats",
     description: "Conventionné avec plusieurs cabinets et cliniques. Conditions de collaboration ouvertes.",
+    color: "text-blue-600",
+    bg: "bg-blue-50"
   },
   {
     icon: Building2,
     title: "Tarifs acceptables",
     description: "Liste des prix communicable sur demande. Réductions selon conditions.",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50"
   },
   {
     icon: FileDown,
     title: "Demande en ligne",
     description: "Formulaire de demande anatomopathologique disponible avec schémas.",
+    color: "text-orange-600",
+    bg: "bg-orange-50"
   },
   {
     icon: Monitor,
     title: "Espace médecins",
     description: "Portail sécurisé avec compte rendu PDF, photos macro/micro, suivi en ligne.",
+    color: "text-purple-600",
+    bg: "bg-purple-50"
   },
 ]
 
@@ -33,85 +42,125 @@ export function TeamSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.1 }
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div
-            className={`order-2 lg:order-1 grid grid-cols-2 gap-4 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-            }`}
-          >
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Section Principale */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          
+          {/* Côté Gauche : Liste de services sans "format carte" */}
+          <div className="space-y-1">
             {features.map((feature, index) => (
-              <div
+              <motion.div
                 key={feature.title}
-                className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="group relative flex gap-6 p-6 rounded-3xl transition-all hover:bg-slate-50"
               >
-                <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-                  <feature.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className={`flex-shrink-0 w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center transition-transform group-hover:scale-110`}>
+                  <feature.icon className={`w-7 h-7 ${feature.color}`} />
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </div>
+                <div className="flex-grow pt-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-bold text-slate-900 group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </h3>
+                    <ChevronRight className="w-4 h-4 text-slate-300 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
+                  </div>
+                  <p className="text-slate-500 text-sm leading-relaxed max-w-sm">
+                    {feature.description}
+                  </p>
+                </div>
+                {/* Ligne de séparation discrète sauf pour le dernier */}
+                {index !== features.length - 1 && (
+                  <div className="absolute bottom-0 left-24 right-6 h-px bg-slate-100 group-hover:bg-transparent transition-colors" />
+                )}
+              </motion.div>
             ))}
           </div>
 
-          <div
-            className={`order-1 lg:order-2 transition-all duration-700 delay-300 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}
+          {/* Côté Droit : Titre et Réassurance */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            className="lg:pl-10"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-              Pour les prescripteurs
+            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 tracking-tight">
+              Pour les <span className="text-primary font-light">prescripteurs</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-lg">
               Nous facilitons votre travail quotidien avec des outils modernes et un accompagnement personnalisé.
             </p>
 
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-accent-foreground text-sm font-bold">✓</span>
+            <div className="grid gap-6">
+              {[
+                { t: "Envoi WhatsApp", d: "Photos macro & micro disponibles rapidement" },
+                { t: "Suivi en temps réel", d: "Statut: reçu / en cours / validé" },
+                { t: "Historique complet", d: "Accès à tous vos dossiers archivés" }
+              ].map((check, i) => (
+                <div key={i} className="flex gap-4 group">
+                  <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                    <CheckCircle2 className="w-4 h-4 text-primary group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-900 group-hover:text-primary transition-colors">{check.t}</p>
+                    <p className="text-slate-500 text-sm">{check.d}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-foreground">Envoi WhatsApp</p>
-                  <p className="text-sm text-muted-foreground">Photos macro & micro disponibles rapidement</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-accent-foreground text-sm font-bold">✓</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Suivi en temps réel</p>
-                  <p className="text-sm text-muted-foreground">Statut: reçu / en cours / validé</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-accent-foreground text-sm font-bold">✓</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Historique complet</p>
-                  <p className="text-sm text-muted-foreground">Accès à tous vos dossiers archivés</p>
-                </div>
-              </div>
+              ))}
             </div>
+          </motion.div>
+        </div>
+
+        {/* Section Preuves & Crédibilité - Nouveau Layout épuré */}
+        <div className="mt-32">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isVisible ? { opacity: 1 } : {}}
+            className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+          >
+            <h3 className="text-3xl font-bold text-slate-900 tracking-tight">
+              Preuves & <span className="text-primary">crédibilité</span>
+            </h3>
+            <div className="h-px flex-grow bg-slate-100 mx-8 hidden lg:block" />
+            <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">
+              Standard d'excellence
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            {[
+              { t: "Chiffres clés", d: "Double lecture et taux de relecture suivis." },
+              { t: "Comptes rendus", d: "Exemples illustrant la clarté et la structure." },
+              { t: "Galerie d'images", d: "Images nettes partageables via WhatsApp." },
+              { t: "Témoignages", d: "Avis de prescripteurs et logos partenaires." }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 + i * 0.1 }}
+                className="flex flex-col group cursor-default"
+              >
+                <div className="h-1 w-8 bg-slate-200 group-hover:w-full group-hover:bg-primary transition-all duration-500 mb-6" />
+                <h4 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors tracking-tight">
+                  {item.t}
+                </h4>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {item.description || item.d}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

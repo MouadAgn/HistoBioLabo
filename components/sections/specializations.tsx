@@ -1,92 +1,75 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { 
+  Dna, Stethoscope, Brain, Baby, Activity, Bone, CheckCircle2 
+} from "lucide-react"
 
 const specializations = [
-  { name: "Dermatopathologie", description: "Pathologies cutanées" },
-  { name: "ORL", description: "Oto-rhino-laryngologie" },
-  { name: "Neuropathologie", description: "Système nerveux" },
-  { name: "Gynécopathologie", description: "Appareil génital féminin" },
-  { name: "Pathologie digestive", description: "Tube digestif" },
-  { name: "Os & parties molles", description: "Appareil locomoteur" },
+  { name: "Dermatopathologie", description: "Pathologies cutanées", icon: Activity, color: "text-blue-600" },
+  { name: "ORL", description: "Oto-rhino-laryngologie", icon: Stethoscope, color: "text-emerald-600" },
+  { name: "Neuropathologie", description: "Système nerveux", icon: Brain, color: "text-purple-600" },
+  { name: "Gynécopathologie", description: "Appareil génital féminin", icon: Baby, color: "text-pink-600" },
+  { name: "Pathologie digestive", description: "Tube digestif", icon: Dna, color: "text-orange-600" },
+  { name: "Os & parties molles", description: "Appareil locomoteur", icon: Bone, color: "text-slate-600" },
 ]
 
 export function SpecializationsSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="py-20 lg:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div
-            className={`transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-            }`}
+    <section className="py-24 lg:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:sticky lg:top-32"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-              Domaines d{"'"}hyperspécialisation
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+              Expertise et <span className="text-primary">Hyperspécialisation</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Notre équipe possède une expertise approfondie dans plusieurs domaines de la pathologie, garantissant des diagnostics précis et fiables.
+            <p className="text-lg text-slate-500 mb-10 leading-relaxed max-w-xl">
+              Chaque échantillon est analysé par des pathologistes experts, garantissant une précision diagnostique de haut niveau.
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 rounded-lg bg-secondary">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                  ✓
+              {[
+                { title: "Double lecture spécialisée", desc: "Validation renforcée systématique" },
+                { title: "Concordance clinico-pathologique", desc: "Corrélation étroite avec les données" }
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4 p-4 border-l-2 border-primary/20 hover:border-primary transition-colors bg-slate-50/50">
+                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5" />
+                  <div>
+                    <p className="font-bold text-slate-900 text-sm">{item.title}</p>
+                    <p className="text-xs text-slate-500">{item.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-foreground">Double lecture spécialisée</p>
-                  <p className="text-sm text-muted-foreground">Validation renforcée des dossiers</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-4 rounded-lg bg-secondary">
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold">
-                  ✓
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Concordance clinico-pathologique</p>
-                  <p className="text-sm text-muted-foreground">Corrélation vérifiée à chaque étape</p>
-                </div>
-              </div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div
-            className={`grid grid-cols-2 gap-4 transition-all duration-700 delay-300 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}
-          >
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-12">
             {specializations.map((spec, index) => (
-              <div
+              <motion.div
                 key={spec.name}
-                className={`p-6 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all group ${
-                  index === 0 ? "col-span-2" : ""
-                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group"
               >
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                <div className="mb-4 inline-flex p-3 rounded-xl bg-slate-50 group-hover:bg-primary/5 border border-slate-100 transition-colors">
+                  <spec.icon size={22} className={spec.color} />
+                </div>
+                <h3 className="font-bold text-slate-900 mb-1 group-hover:text-primary transition-colors">
                   {spec.name}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1">{spec.description}</p>
-              </div>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {spec.description}
+                </p>
+                <div className="h-0.5 w-0 bg-primary/20 mt-4 group-hover:w-full transition-all duration-500" />
+              </motion.div>
             ))}
           </div>
         </div>

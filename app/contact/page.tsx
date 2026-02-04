@@ -124,15 +124,17 @@ export default function ContactPage() {
                 }`}
               >
                 <div className="sticky top-28">
-                  <Card className="border-border overflow-hidden">
-                    <CardHeader className="bg-primary text-primary-foreground">
-                      <CardTitle className="flex items-center gap-3">
-                        <Building className="w-6 h-6" />
+                  <Card className="border-border hover:border-primary/50 transition-colors overflow-hidden">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3 text-card-foreground">
+                        <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
+                          <Building className="w-5 h-5 text-primary" />
+                        </div>
                         Informations pratiques
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0">
-                      <div className="aspect-video w-full bg-secondary">
+                    <CardContent className="space-y-6">
+                      <div className="aspect-video w-full bg-secondary rounded-lg overflow-hidden">
                         <iframe
                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3440.123456789!2d-9.5!3d30.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDI0JzAwLjAiTiA5wrAzMCcwMC4wIlc!5e0!3m2!1sfr!2sma!4v1234567890"
                           width="100%"
@@ -142,18 +144,19 @@ export default function ContactPage() {
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
                           title="HistoBioLab Location"
-                          className="w-full h-full min-h-[250px]"
+                          className="w-full h-full min-h-[220px]"
                         />
                       </div>
-                      <div className="p-6 space-y-6">
+
+                      <div className="space-y-4">
                         <div className="flex items-start gap-4">
                           <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">
                             <Clock className="w-5 h-5 text-primary" />
                           </div>
                           <div>
                             <p className="font-semibold text-foreground mb-1">Horaires de réception</p>
-                            <p className="text-sm text-muted-foreground">Réception étendue</p>
-                            <p className="text-sm text-muted-foreground">Contactez-nous pour les détails</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">Réception étendue</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">Contactez-nous pour les détails</p>
                           </div>
                         </div>
 
@@ -163,26 +166,26 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <p className="font-semibold text-foreground mb-1">Envoi de prélèvements</p>
-                            <p className="text-sm text-muted-foreground">Coursier disponible</p>
-                            <p className="text-sm text-muted-foreground">Kits prêts à l{"'"}emploi fournis</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">Coursier disponible</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">Kits prêts à l{"'"}emploi fournis</p>
                           </div>
                         </div>
+                      </div>
 
-                        <div className="pt-4 border-t border-border">
-                          <p className="text-sm text-muted-foreground mb-4">
-                            Pour les urgences ou demandes prioritaires, utilisez notre circuit URGENT dédié.
-                          </p>
-                          <a
-                            href="https://wa.me/212775904761?text=Bonjour,%20j'ai%20une%20demande%20urgente"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground gap-2">
-                              <MessageCircle className="w-5 h-5" />
-                              Demande urgente
-                            </Button>
-                          </a>
-                        </div>
+                      <div className="pt-2 border-t border-border">
+                        <p className="text-sm text-muted-foreground mb-4">
+                          Pour les urgences ou demandes prioritaires, utilisez notre circuit URGENT dédié.
+                        </p>
+                        <a
+                          href="https://wa.me/212775904761?text=Bonjour,%20j'ai%20une%20demande%20urgente"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground gap-2">
+                            <MessageCircle className="w-5 h-5" />
+                            Demande urgente
+                          </Button>
+                        </a>
                       </div>
                     </CardContent>
                   </Card>

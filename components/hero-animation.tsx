@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, type CSSProperties } from "react"
 
 export function HeroAnimation() {
   const [isVisible, setIsVisible] = useState(false)
@@ -28,7 +28,7 @@ export function HeroAnimation() {
   return (
     <div 
       ref={containerRef}
-      className={`relative w-full h-full min-h-[500px] lg:min-h-[600px] transition-all duration-1000 ${
+      className={`relative w-full h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[600px] transition-all duration-1000 ${
         isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
       }`}
     >
@@ -41,7 +41,16 @@ export function HeroAnimation() {
         }}
       >
         {/* Outer ring - microscope lens effect */}
-        <div className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
+        <div
+          className="relative"
+          style={
+            {
+              width: "clamp(240px, 70vw, 500px)",
+              height: "clamp(240px, 70vw, 500px)",
+              "--ring-size": "clamp(240px, 70vw, 500px)"
+            } as CSSProperties
+          }
+        >
           {/* Glowing background */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-accent/10 to-primary/20 animate-pulse" />
           
@@ -200,7 +209,7 @@ export function HeroAnimation() {
               style={{
                 top: "50%",
                 left: "50%",
-                transform: `rotate(${i * 30}deg) translateY(-${160}px) translateX(-50%)`,
+                transform: `rotate(${i * 30}deg) translateY(calc(var(--ring-size) / -2)) translateX(-50%)`,
                 transformOrigin: "center center"
               }}
             />
