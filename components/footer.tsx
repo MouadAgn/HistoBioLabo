@@ -18,7 +18,7 @@ export function Footer() {
             <Link href="/" className="group inline-block">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold tracking-tighter text-white transition-colors group-hover:text-primary">
-                  Histo<span className="text-primary group-hover:text-white transition-colors">Bio</span>Lab
+                  Histo<span className="text-primary group-hover:text-white transition-colors">Bio</span>Labo
                 </span>
               </div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold mt-1">
@@ -37,7 +37,7 @@ export function Footer() {
                  <Globe size={16} className="text-slate-400 group-hover:text-white" />
                </a>
                <a 
-                 href="https://wa.me/212775904761" 
+                 href="https://wa.me/212631215723" 
                  className="w-9 h-9 rounded-xl bg-slate-800/50 border border-slate-700 flex items-center justify-center hover:bg-emerald-500 hover:border-emerald-500 hover:-translate-y-1 transition-all duration-300 group"
                  aria-label="WhatsApp"
                >
@@ -105,11 +105,11 @@ export function Footer() {
                 </div>
               </div>
               
-              <a href="tel:+212775904761" className="flex items-center gap-4 group w-fit">
+              <a href="tel:+212631215723" className="flex items-center gap-4 group w-fit">
                 <div className="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm">
                   <Phone size={18} />
                 </div>
-                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors">+212 7 75 90 47 61</span>
+                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors">+212 6 31 21 57 23</span>
               </a>
 
               <div className="flex items-start gap-4">
@@ -128,7 +128,7 @@ export function Footer() {
         {/* Barre de Copyright épurée */}
         <div className="pt-8 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[11px] text-slate-500 font-medium tracking-wide">
-            © {currentYear} <span className="text-slate-300">HISTOBIOLAB AGADIR</span>. TOUS DROITS RÉSERVÉS.
+            © {currentYear} <span className="text-slate-300">HISTOBIOLABO AGADIR</span>. TOUS DROITS RÉSERVÉS.
           </p>
           
           <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800 shadow-inner">

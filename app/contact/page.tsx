@@ -58,7 +58,7 @@ export default function ContactPage() {
                       Le moyen le plus rapide pour nous contacter. Envoyez-nous un message et recevez une réponse en quelques minutes.
                     </p>
                     <a
-                      href="https://wa.me/212775904761"
+                      href="https://wa.me/212631215723"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -83,13 +83,13 @@ export default function ContactPage() {
                     <p className="text-muted-foreground">
                       Appelez-nous directement pour une conversation immédiate avec notre équipe.
                     </p>
-                    <a href="tel:+212775904761">
+                    <a href="tel:+212631215723">
                       <Button
                         variant="outline"
                         className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
                       >
                         <Phone className="w-5 h-5" />
-                        +212 7 75 90 47 61
+                        +212 6 31 21 57 23
                       </Button>
                     </a>
                   </CardContent>
@@ -109,7 +109,7 @@ export default function ContactPage() {
                       Venez nous rendre visite à notre laboratoire à Agadir.
                     </p>
                     <div className="p-4 rounded-lg bg-secondary">
-                      <p className="font-semibold text-foreground">HistoBioLab</p>
+                      <p className="font-semibold text-foreground">HistoBioLabo</p>
                       <p className="text-muted-foreground">CCH9+M9W</p>
                       <p className="text-muted-foreground">Agadir 80000</p>
                       <p className="text-muted-foreground">Morocco</p>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                           allowFullScreen
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
-                          title="HistoBioLab Location"
+                          title="HistoBioLabo Location"
                           className="w-full h-full min-h-[220px]"
                         />
                       </div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
                           Pour les urgences ou demandes prioritaires, utilisez notre circuit URGENT dédié.
                         </p>
                         <a
-                          href="https://wa.me/212775904761?text=Bonjour,%20j'ai%20une%20demande%20urgente"
+                          href="https://wa.me/212631215723?text=Bonjour,%20j'ai%20une%20demande%20urgente"
                           target="_blank"
                           rel="noopener noreferrer"
                         >

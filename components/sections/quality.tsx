@@ -57,7 +57,7 @@ export function QualitySection() {
               Qualité & <span className="text-primary">Sécurité</span>
             </h2>
             <p className="text-base text-slate-500 leading-relaxed">
-              Des protocoles rigoureux pour garantir la fiabilité de chaque diagnostic rendu par HistoBioLab.
+              Des protocoles rigoureux pour garantir la fiabilité de chaque diagnostic rendu par HistoBioLabo.
             </p>
           </motion.div>
           <div className="hidden md:block w-16 h-1 bg-primary/20 rounded-full mb-3" />

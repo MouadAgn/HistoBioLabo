@@ -33,7 +33,7 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-              HistoBioLab – Anatomie pathologique
+              HistoBioLabo – Anatomie pathologique
               <span className="block text-primary">Double lecture,</span>
               <span className="block text-accent">haute fiabilité</span>
             </h1>
@@ -44,7 +44,7 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/212775904761"
+                href="https://wa.me/212631215723"
                 target="_blank"
                 rel="noopener noreferrer"
               >

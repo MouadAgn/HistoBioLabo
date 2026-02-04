@@ -42,7 +42,7 @@ export function Header() {
             <div className="relative">
               <Image
                 src="/logo.png"
-                alt="HistoBioLab Logo"
+                alt="HistoBioLabo Logo"
                 width={45}
                 height={60}
                 className="h-12 w-auto sm:h-14 transition-transform group-hover:scale-105"
@@ -50,7 +50,7 @@ export function Header() {
             </div>
             <div className="hidden sm:block border-l border-slate-200 pl-4">
               <span className="text-xl font-bold tracking-tighter text-slate-900 block leading-none">
-                Histo<span className="text-primary">Bio</span>Lab
+                Histo<span className="text-primary">Bio</span>Labo
               </span>
               <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-1">
                 Anatomie Pathologique
@@ -75,7 +75,7 @@ export function Header() {
           {/* CTA Section */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://wa.me/212775904761"
+              href="https://wa.me/212631215723"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -117,7 +117,7 @@ export function Header() {
                   {link.name}
                 </Link>
               ))}
-              <a href="https://wa.me/212775904761" className="pt-4">
+              <a href="https://wa.me/212631215723" className="pt-4">
                 <Button className="w-full h-14 rounded-2xl bg-primary text-white text-lg gap-2">
                   <Phone className="w-5 h-5" />
                   Contactez-nous

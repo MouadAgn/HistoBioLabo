@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'HistoBioLab - Laboratoire de Pathologie à Agadir',
-  description: 'HistoBioLab - Laboratoire d\'anatomie pathologique à Agadir, Maroc. Double lecture spécialisée, délais courts, résultats fiables.',
+  title: 'HistoBioLabo - Laboratoire de Pathologie à Agadir',
+  description: 'HistoBioLabo - Laboratoire d\'anatomie pathologique à Agadir, Maroc. Double lecture spécialisée, délais courts, résultats fiables.',
   generator: 'v0.app',
   icons: {
     icon: [
