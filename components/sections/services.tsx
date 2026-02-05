@@ -13,7 +13,13 @@ const services = [
   { title: "Circuit URGENT", description: "Prélèvements critiques traités avec délai priorisé selon indication.", image: "/images_defilement/17277272-d10e-4802-9c38-ee8e15c38d7d.jpg" },
   { title: "Matériel & techniques", description: "Plateau technique fiable et rassurant : automates, processeur, contrôle qualité.", image: "/images_defilement/a38c6ae9-cf35-4684-b2a6-c135b62a03d9.jpg" },
   { title: "Innovation & Suivi", description: "Intégration constante des dernières avancées technologiques pour vos diagnostics.", image: "/images_defilement/f8b77bfb-8822-4925-b0c0-eeb57135d5f4.jpg" },
-  { title: "Rigueur Diagnostique", description: "Engagement total pour la précision de chaque lame analysée au microscope.", image: "/images_defilement/f503b57f-d339-4cd2-86ed-7d09124819c9.jpg" }
+  { title: "Rigueur Diagnostique", description: "Engagement total pour la précision de chaque lame analysée au microscope.", image: "/images_defilement/f503b57f-d339-4cd2-86ed-7d09124819c9.jpg" },
+  // AJOUT DE VOTRE NOUVELLE IMAGE ICI
+  { 
+    title: "Diagnostic de Précision", 
+    description: "Utilisation d'automates de dernière génération pour garantir la reproductibilité et la rapidité de vos résultats.", 
+    image: "/images_defilement/whatsapp_image.jpeg" 
+  }
 ]
 
 const documents = [
@@ -29,7 +35,6 @@ export function ServicesSection() {
   const [activeSrv, setActiveSrv] = useState(0)
   const [activeDoc, setActiveDoc] = useState(0)
 
-  // Configuration plus réactive : stiffness augmenté et damping réduit pour moins de latence
   const springConfig = { stiffness: 150, damping: 25, restDelta: 0.001 }
 
   // -- LOGIQUE SERVICES --
@@ -64,7 +69,6 @@ export function ServicesSection() {
     <div className="flex flex-col bg-white">
       
       {/* --- SECTION 1 : SERVICES --- */}
-      {/* Réduit à 500vh pour un défilement ~2x plus rapide */}
       <section ref={servicesRef} className="relative h-[500vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
@@ -115,7 +119,6 @@ export function ServicesSection() {
       </section>
 
       {/* --- SECTION 2 : DOCUMENTS --- */}
-      {/* Réduit à 250vh pour les documents (très rapide) */}
       <section ref={docsRef} className="relative h-[250vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
