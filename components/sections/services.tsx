@@ -5,21 +5,15 @@ import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"
 import Image from "next/image"
 
 const services = [
-  { title: "Histopathologie", description: "Large gamme de colorations spéciales pour une approche diagnostique complète.", image: "/images_defilement/2cfa7f09-071f-490b-b7e6-eea32fd60581.jpg" },
-  { title: "Cytopathologie", description: "Analyse cellulaire précise pour le dépistage et le diagnostic précoce.", image: "/images_defilement/2e6f18d2-aa2c-463e-b074-3155174de2c8.jpg" },
-  { title: "Immunohistochimie", description: "Large panel d'anticorps et biomarqueurs, utilisés de façon ciblée après étude du cas.", image: "/images_defilement/3b9c81cd-d1d4-4953-b0af-f7b18e766bbb.jpg" },
-  { title: "Typage HPV", description: "Détection et typage du papillomavirus humain avec précision.", image: "/images_defilement/35e7ce6a-d694-4cc6-a0b7-84fba7ed75d4.jpg" },
-  { title: "Pathologie moléculaire", description: "Analyses moléculaires avancées pour un diagnostic personnalisé.", image: "/images_defilement/36c9a97f-b5cf-489b-b177-6c9cc18fed13.jpg" },
-  { title: "Circuit URGENT", description: "Prélèvements critiques traités avec délai priorisé selon indication.", image: "/images_defilement/17277272-d10e-4802-9c38-ee8e15c38d7d.jpg" },
-  { title: "Matériel & techniques", description: "Plateau technique fiable et rassurant : automates, processeur, contrôle qualité.", image: "/images_defilement/a38c6ae9-cf35-4684-b2a6-c135b62a03d9.jpg" },
-  { title: "Innovation & Suivi", description: "Intégration constante des dernières avancées technologiques pour vos diagnostics.", image: "/images_defilement/f8b77bfb-8822-4925-b0c0-eeb57135d5f4.jpg" },
-  { title: "Rigueur Diagnostique", description: "Engagement total pour la précision de chaque lame analysée au microscope.", image: "/images_defilement/f503b57f-d339-4cd2-86ed-7d09124819c9.jpg" },
-  // AJOUT DE VOTRE NOUVELLE IMAGE ICI
-  { 
-    title: "Diagnostic de Précision", 
-    description: "Utilisation d'automates de dernière génération pour garantir la reproductibilité et la rapidité de vos résultats.", 
-    image: "/images_defilement/whatsapp_image.jpeg" 
-  }
+  { title: "Macroscopie", description: "Analyse macroscopique rigoureuse des pièces pour une orientation précise.", image: "/images_defilement/1 Macroscopie/1.png" },
+  { title: "Histopathologie", description: "Colorations et examens histologiques pour un diagnostic fiable.", image: "/images_defilement/2 Histopathologie/2.jpg" },
+  { title: "Cytopathologie", description: "Étude cellulaire fine pour le dépistage et le diagnostic précoce.", image: "/images_defilement/3 Cytopathologie/3.jpg" },
+  { title: "immunohistochimie", description: "Marquages ciblés pour préciser l’origine et le profil tumoral.", image: "/images_defilement/4 immunohistochimie/4.jpg" },
+  { title: "Typage HPV", description: "Détection et typage du papillomavirus humain avec précision.", image: "/images_defilement/5 Typage HPV/5.png" },
+  { title: "Circuit urgent", description: "Prélèvements critiques traités en priorité selon l’indication.", image: "/images_defilement/6 Circuit urgent/6.png" },
+  { title: "Matériel et techniques", description: "Plateau technique performant et contrôles qualité systématiques.", image: "/images_defilement/7 Matériel et techniques/7.jpg" },
+  { title: "Innovation et suivi", description: "Intégration d’outils modernes pour une traçabilité optimale.", image: "/images_defilement/8 Innovation et suivi/8.jpg" },
+  { title: "Rigueur Diagnostiques", description: "Relecture et vérifications pour garantir la précision finale.", image: "/images_defilement/9 Rigueur Diagnostiques/9.png" },
 ]
 
 const documents = [
@@ -35,7 +29,7 @@ export function ServicesSection() {
   const [activeSrv, setActiveSrv] = useState(0)
   const [activeDoc, setActiveDoc] = useState(0)
 
-  const springConfig = { stiffness: 150, damping: 25, restDelta: 0.001 }
+  const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
 
   // -- LOGIQUE SERVICES --
   const { scrollYProgress: srvScrollRaw } = useScroll({
@@ -69,7 +63,8 @@ export function ServicesSection() {
     <div className="flex flex-col bg-white">
       
       {/* --- SECTION 1 : SERVICES --- */}
-      <section ref={servicesRef} className="relative h-[500vh]">
+      {/* h-[1200vh] sur mobile pour un scroll très long / md:h-[800vh] pour garder le web tel quel */}
+      <section ref={servicesRef} className="relative h-[1200vh] md:h-[800vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-8 md:mb-12">
@@ -86,7 +81,7 @@ export function ServicesSection() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row gap-6 md:gap-24 items-center w-full"
                 >
                   <div className="w-full lg:w-3/5">
@@ -102,7 +97,7 @@ export function ServicesSection() {
                     <h3 className="text-2xl md:text-5xl font-bold text-slate-900 leading-tight">
                       {services[activeSrv].title}
                     </h3>
-                    <p className="text-sm md:text-lg text-slate-500 leading-relaxed line-clamp-4 md:line-clamp-none">
+                    <p className="text-sm md:text-lg text-slate-500 leading-relaxed min-h-[60px] md:min-h-[100px]">
                       {services[activeSrv].description}
                     </p>
                     <div className="flex justify-center lg:justify-start gap-1.5 md:gap-2">
@@ -119,7 +114,8 @@ export function ServicesSection() {
       </section>
 
       {/* --- SECTION 2 : DOCUMENTS --- */}
-      <section ref={docsRef} className="relative h-[250vh]">
+      {/* h-[600vh] sur mobile / md:h-[400vh] pour le web */}
+      <section ref={docsRef} className="relative h-[600vh] md:h-[400vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-10 md:mb-16">
@@ -136,7 +132,7 @@ export function ServicesSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row items-center gap-8 md:gap-24 w-full"
                 >
                   <div className="w-full lg:w-2/5 flex justify-center">
