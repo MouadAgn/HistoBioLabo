@@ -52,7 +52,7 @@ export function ServicesSection() {
 
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
 
-  // -- SERVICES LOGIC --
+  // -- LOGIQUE SERVICES --
   const { scrollYProgress: srvScrollRaw } = useScroll({ target: servicesRef, offset: ["start start", "end end"] })
   const srvScroll = useSpring(srvScrollRaw, springConfig)
   useEffect(() => {
@@ -125,7 +125,7 @@ export function ServicesSection() {
         </div>
       </section>
 
-      {/* --- SECTION 2 : ESPACE DOCUMENTAIRE (PILE À GAUCHE) --- */}
+      {/* --- SECTION 2 : ESPACE DOCUMENTAIRE --- */}
       <section ref={docsRef} className="relative h-[600vh] md:h-[400vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0 font-sans text-slate-900">
           <div className="max-w-7xl mx-auto w-full px-6">
@@ -146,17 +146,16 @@ export function ServicesSection() {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row items-center gap-12 md:gap-24 w-full"
                 >
-                  {/* Container des images empilées */}
                   <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
-                    {/* Changement dynamique du ratio si c'est la slide compte HBL */}
                     <motion.div 
                       className={`relative cursor-pointer group ${
                         documents[activeDoc].title === "Votre compte HBL" 
-                        ? "aspect-video w-[300px] sm:w-[400px] md:w-[550px]" // Format Paysage
-                        : "h-[300px] w-[220px] sm:h-[350px] sm:w-[260px] md:h-[480px] md:w-[350px]" // Format Portrait
+                        ? "aspect-video w-[300px] sm:w-[400px] md:w-[550px]" 
+                        : "h-[250px] w-[180px] sm:h-[350px] sm:w-[260px] md:h-[480px] md:w-[350px]" 
                       }`}
                       initial="initial"
-                      whileHover="hover"
+                      whileHover="animate"
+                      whileTap="animate" // Permet l'animation au toucher sur mobile
                     >
                       {documents[activeDoc].images.map((img, idx) => {
                         const isBackImage = idx > 0;
@@ -171,14 +170,14 @@ export function ServicesSection() {
                                 x: isBackImage ? -40 : 0, 
                                 y: isBackImage ? -10 : 0,
                                 scale: isBackImage ? 0.95 : 1,
-                                rotate: isBackImage ? -2 : 0,
+                                rotate: isBackImage ? -3 : 0,
                                 opacity: 1
                               },
-                              hover: { 
-                                x: isBackImage ? -100 : 0, 
+                              animate: { 
+                                x: isBackImage ? -110 : -10, // Sort encore plus
                                 y: isBackImage ? -20 : 0,
                                 scale: isBackImage ? 1 : 1,
-                                rotate: isBackImage ? -4 : -1,
+                                rotate: isBackImage ? -5 : -1,
                                 transition: { duration: 0.4, ease: "backOut" }
                               }
                             }}
@@ -191,7 +190,11 @@ export function ServicesSection() {
                             />
                             {isBackImage && (
                               <motion.div 
-                                className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"
+                                className="absolute inset-0 bg-slate-900/10"
+                                variants={{
+                                    initial: { opacity: 0.2 },
+                                    animate: { opacity: 0 }
+                                }}
                               />
                             )}
                           </motion.div>
@@ -200,7 +203,6 @@ export function ServicesSection() {
                     </motion.div>
                   </div>
 
-                  {/* Contenu Texte */}
                   <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4 md:space-y-6">
                     <div className="inline-block px-3 py-1 bg-primary/10 rounded-full">
                       <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest">
