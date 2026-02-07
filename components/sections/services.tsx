@@ -12,7 +12,7 @@ const services = [
   { title: "Typage HPV", description: "Détection et typage du papillomavirus humain avec précision.", image: "/images_defilement/5 Typage HPV/5.png" },
   { title: "Circuit urgent", description: "Prélèvements critiques traités en priorité selon l’indication.", image: "/images_defilement/6 Circuit urgent/6.png" },
   { title: "Matériel et techniques", description: "Plateau technique performant et contrôles qualité systématiques.", image: "/images_defilement/7 Matériel et techniques/7.jpg" },
-  { title: "Innovation et suivi", description: "Intégration d’outils modernes pour une traçabilité optimale.", image: "/images_defilement/8 Innovation et suivi/innovation.png" },
+  { title: "Innovation et suivi", description: "Intégration d’outils modernes pour une traçabilité optimale.", image: "/images_defilement/2 Histopathologie/2.jpg" },
   { title: "Rigueur Diagnostiques", description: "Engagement total pour la précision de chaque lame analysée au microscope.", image: "/images_defilement/9 Rigueur Diagnostiques/9.png" },
 ]
 

@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="bg-[#0f172a] text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         
-        {/* Section Principale */}
+        {/* Section Principale : 4 Colonnes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           {/* Colonne 1: Identité */}
@@ -46,7 +46,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Colonne 2: Navigation avec Hovers Animés */}
+          {/* Colonne 2: Navigation */}
           <div className="space-y-6">
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Navigation</h3>
             <nav className="flex flex-col gap-3">
@@ -125,21 +125,38 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Barre de Copyright épurée */}
-        <div className="pt-8 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[11px] text-slate-500 font-medium tracking-wide">
-            © {currentYear} <span className="text-slate-300">HISTOBIOLABO AGADIR</span>. TOUS DROITS RÉSERVÉS.
-          </p>
+        {/* Section Copyright & Signature - Centrée et Lumineuse */}
+        <div className="pt-10 border-t border-slate-800/60 flex flex-col items-center gap-6 text-center">
           
-          <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-900/50 border border-slate-800 shadow-inner">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <div className="space-y-3">
+            <p className="text-[12px] md:text-sm text-slate-400 font-medium tracking-wide">
+              © {currentYear} <span className="text-white">HISTOBIOLABO AGADIR</span>. TOUS DROITS RÉSERVÉS.
+            </p>
+            
+            <p className="text-sm md:text-lg font-medium text-slate-300">
+              Conçu avec expertise par{" "}
+              <a 
+                href="https://www.wemarkyou.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-white transition-all duration-300 underline underline-offset-4 decoration-primary/50 hover:decoration-white font-bold tracking-tight shadow-primary/20 drop-shadow-sm"
+              >
+                www.wemarkyou.com
+              </a>
+            </p>
+          </div>
+          
+          {/* Badge Qualité */}
+          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/80 border border-slate-700 shadow-xl">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="text-[10px] font-bold text-slate-400 tracking-[0.15em] uppercase">
+            <span className="text-[11px] font-bold text-slate-200 tracking-[0.2em] uppercase">
               Système Qualité ISO en vigueur
             </span>
           </div>
+          
         </div>
       </div>
     </footer>
