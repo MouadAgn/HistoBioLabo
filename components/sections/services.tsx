@@ -17,9 +17,30 @@ const services = [
 ]
 
 const documents = [
-  { title: "Livret d'accueil Patient", category: "Information", description: "Consultez notre guide complet pour comprendre votre parcours de soin." },
-  { title: "Manuel de prélèvements", category: "Technique", description: "Recommandations pré-analytiques pour les professionnels." },
-  { title: "Accréditation COFRAC", category: "Qualité", description: "Preuve de notre engagement et conformité aux normes ISO." }
+  { 
+    title: "Photos macroscopiques jointes au CR", 
+    category: "Imagerie", 
+    description: "Visualisation détaillée des pièces opératoires et des prélèvements à l'œil nu pour une corrélation anatomo-clinique optimale.",
+    images: ["/documents/1 Photos macroscopiques jointes au CR/2B.png", "/documents/1 Photos macroscopiques jointes au CR/3B.jpg"]
+  },
+  { 
+    title: "Photos microscopiques jointes au CR", 
+    category: "Diagnostic", 
+    description: "Captures haute résolution des coupes histologiques mettant en évidence les critères diagnostiques majeurs analysés au microscope.",
+    images: ["/documents/2 Photos microscopiques jointes au CR/1B.png", "/documents/2 Photos microscopiques jointes au CR/2B.png"]
+  },
+  { 
+    title: "Documents envoyés directement", 
+    category: "Communication", 
+    description: "Accès rapide aux rapports et documents administratifs transmis de manière sécurisée pour le suivi des dossiers.",
+    images: ["/documents/3 Documents envoyé directement/photo_2026-02-06_10-25-56 (2).jpg", "/documents/3 Documents envoyé directement/photo_2026-02-06_10-25-56.jpg"]
+  },
+  { 
+    title: "Votre compte HBL", 
+    category: "Espace Client", 
+    description: "Interface personnalisée permettant la gestion de vos analyses, le téléchargement des comptes-rendus et l'historique de vos examens.",
+    images: ["/documents/4 Votre compte HBL/Screenshot 2026-02-06 113128.png"]
+  }
 ]
 
 export function ServicesSection() {
@@ -31,13 +52,9 @@ export function ServicesSection() {
 
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
 
-  // -- LOGIQUE SERVICES --
-  const { scrollYProgress: srvScrollRaw } = useScroll({
-    target: servicesRef,
-    offset: ["start start", "end end"]
-  })
+  // -- SERVICES LOGIC --
+  const { scrollYProgress: srvScrollRaw } = useScroll({ target: servicesRef, offset: ["start start", "end end"] })
   const srvScroll = useSpring(srvScrollRaw, springConfig)
-
   useEffect(() => {
     return srvScroll.on("change", (v) => {
       const index = Math.min(Math.floor(v * services.length), services.length - 1)
@@ -45,13 +62,9 @@ export function ServicesSection() {
     })
   }, [srvScroll, activeSrv])
 
-  // -- LOGIQUE DOCUMENTS --
-  const { scrollYProgress: docScrollRaw } = useScroll({
-    target: docsRef,
-    offset: ["start start", "end end"]
-  })
+  // -- DOCUMENTS LOGIC --
+  const { scrollYProgress: docScrollRaw } = useScroll({ target: docsRef, offset: ["start start", "end end"] })
   const docScroll = useSpring(docScrollRaw, springConfig)
-
   useEffect(() => {
     return docScroll.on("change", (v) => {
       const index = Math.min(Math.floor(v * documents.length), documents.length - 1)
@@ -63,12 +76,11 @@ export function ServicesSection() {
     <div className="flex flex-col bg-white">
       
       {/* --- SECTION 1 : SERVICES --- */}
-      {/* h-[1200vh] sur mobile pour un scroll très long / md:h-[800vh] pour garder le web tel quel */}
       <section ref={servicesRef} className="relative h-[1200vh] md:h-[800vh]">
-        <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0">
+        <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0 font-sans text-slate-900">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-2 md:mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 tracking-tight">
                 Nos <span className="text-primary italic font-light">Activités</span>
               </h2>
               <div className="w-12 h-1 bg-primary/30 mx-auto rounded-full" />
@@ -94,7 +106,7 @@ export function ServicesSection() {
                     <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
                       Expertise {activeSrv + 1} / {services.length}
                     </span>
-                    <h3 className="text-2xl md:text-5xl font-bold text-slate-900 leading-tight">
+                    <h3 className="text-2xl md:text-5xl font-bold leading-tight tracking-tighter">
                       {services[activeSrv].title}
                     </h3>
                     <p className="text-sm md:text-lg text-slate-500 leading-relaxed min-h-[60px] md:min-h-[100px]">
@@ -113,54 +125,98 @@ export function ServicesSection() {
         </div>
       </section>
 
-      {/* --- SECTION 2 : DOCUMENTS --- */}
-      {/* h-[600vh] sur mobile / md:h-[400vh] pour le web */}
+      {/* --- SECTION 2 : ESPACE DOCUMENTAIRE (PILE À GAUCHE) --- */}
       <section ref={docsRef} className="relative h-[600vh] md:h-[400vh]">
-        <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0">
+        <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center bg-slate-50 overflow-hidden border-t border-slate-200 pt-24 md:pt-0 font-sans text-slate-900">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-10 md:mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-2 md:mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 tracking-tight">
                 Espace <span className="text-primary italic font-light">Documentaire</span>
               </h2>
               <div className="w-12 h-1 bg-primary/30 mx-auto rounded-full" />
             </div>
 
-            <div className="relative min-h-[400px] md:h-[450px] flex items-center justify-center">
+            <div className="relative min-h-[450px] md:h-[500px] flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeDoc}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="flex flex-col lg:flex-row items-center gap-8 md:gap-24 w-full"
+                  className="flex flex-col lg:flex-row items-center gap-12 md:gap-24 w-full"
                 >
-                  <div className="w-full lg:w-2/5 flex justify-center">
-                    <div className="relative h-[250px] w-[180px] md:h-[480px] md:w-[340px] bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col items-center justify-center p-6 text-center">
-                       <div className="w-10 h-10 md:w-16 md:h-16 bg-primary/5 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                          <svg className="w-6 h-6 md:w-8 md:h-8 text-primary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                          </svg>
-                       </div>
-                       <p className="text-slate-900 font-bold text-xs md:text-lg leading-tight">{documents[activeDoc].title}</p>
-                    </div>
+                  {/* Container des images empilées */}
+                  <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+                    {/* Changement dynamique du ratio si c'est la slide compte HBL */}
+                    <motion.div 
+                      className={`relative cursor-pointer group ${
+                        documents[activeDoc].title === "Votre compte HBL" 
+                        ? "aspect-video w-[300px] sm:w-[400px] md:w-[550px]" // Format Paysage
+                        : "h-[300px] w-[220px] sm:h-[350px] sm:w-[260px] md:h-[480px] md:w-[350px]" // Format Portrait
+                      }`}
+                      initial="initial"
+                      whileHover="hover"
+                    >
+                      {documents[activeDoc].images.map((img, idx) => {
+                        const isBackImage = idx > 0;
+                        
+                        return (
+                          <motion.div
+                            key={img}
+                            className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-2 border-white bg-white"
+                            style={{ zIndex: 10 - idx }}
+                            variants={{
+                              initial: { 
+                                x: isBackImage ? -40 : 0, 
+                                y: isBackImage ? -10 : 0,
+                                scale: isBackImage ? 0.95 : 1,
+                                rotate: isBackImage ? -2 : 0,
+                                opacity: 1
+                              },
+                              hover: { 
+                                x: isBackImage ? -100 : 0, 
+                                y: isBackImage ? -20 : 0,
+                                scale: isBackImage ? 1 : 1,
+                                rotate: isBackImage ? -4 : -1,
+                                transition: { duration: 0.4, ease: "backOut" }
+                              }
+                            }}
+                          >
+                            <Image 
+                              src={img} 
+                              alt={`document-${idx}`} 
+                              fill 
+                              className="object-cover" 
+                            />
+                            {isBackImage && (
+                              <motion.div 
+                                className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"
+                              />
+                            )}
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
                   </div>
 
-                  <div className="w-full lg:w-3/5 text-center lg:text-left space-y-4 md:space-y-6">
+                  {/* Contenu Texte */}
+                  <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4 md:space-y-6">
                     <div className="inline-block px-3 py-1 bg-primary/10 rounded-full">
-                      <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest">{documents[activeDoc].category}</span>
+                      <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest">
+                        {documents[activeDoc].category}
+                      </span>
                     </div>
-                    <h3 className="text-2xl md:text-6xl font-bold text-slate-900 leading-none">{documents[activeDoc].title}</h3>
-                    <p className="text-sm md:text-xl text-slate-500 leading-relaxed max-w-xl">{documents[activeDoc].description}</p>
-                    <div className="flex justify-center lg:justify-start gap-2">
+                    <h3 className="text-2xl md:text-5xl font-bold leading-tight tracking-tighter">
+                      {documents[activeDoc].title}
+                    </h3>
+                    <p className="text-sm md:text-xl text-slate-500 leading-relaxed max-w-xl">
+                      {documents[activeDoc].description}
+                    </p>
+                    <div className="flex justify-center lg:justify-start gap-2 pt-4">
                       {documents.map((_, i) => (
-                        <div key={i} className={`h-1 rounded-full transition-all duration-300 ${activeDoc === i ? "w-8 md:w-12 bg-slate-400" : "w-2 bg-slate-200"}`} />
+                        <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${activeDoc === i ? "w-8 md:w-12 bg-slate-400" : "w-2 bg-slate-200"}`} />
                       ))}
-                    </div>
-                    <div className="pt-2 md:pt-6">
-                      <button className="w-full md:w-auto px-8 py-3 md:px-10 md:py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-primary transition-all shadow-lg text-sm md:text-base active:scale-95">
-                        Consulter le PDF
-                      </button>
                     </div>
                   </div>
                 </motion.div>
