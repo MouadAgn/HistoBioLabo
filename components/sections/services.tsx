@@ -13,7 +13,7 @@ const services = [
   { title: "Circuit urgent", description: "Prélèvements critiques traités en priorité selon l’indication.", image: "/images_defilement/6 Circuit urgent/6.png" },
   { title: "Matériel et techniques", description: "Plateau technique performant et contrôles qualité systématiques.", image: "/images_defilement/7 Matériel et techniques/7.jpg" },
   { title: "Innovation et suivi", description: "Intégration d’outils modernes pour une traçabilité optimale.", image: "/images_defilement/8 Innovation et suivi/8.jpg" },
-  { title: "Rigueur Diagnostiques", description: "Relecture et vérifications pour garantir la précision finale.", image: "/images_defilement/9 Rigueur Diagnostiques/9.png" },
+  { title: "Rigueur Diagnostiques", description: "Engagement total pour la précision de chaque lame analysée au microscope.", image: "/images_defilement/9 Rigueur Diagnostiques/9.png" },
 ]
 
 const documents = [
@@ -52,7 +52,6 @@ export function ServicesSection() {
 
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
 
-  // -- LOGIQUE SERVICES --
   const { scrollYProgress: srvScrollRaw } = useScroll({ target: servicesRef, offset: ["start start", "end end"] })
   const srvScroll = useSpring(srvScrollRaw, springConfig)
   useEffect(() => {
@@ -62,7 +61,6 @@ export function ServicesSection() {
     })
   }, [srvScroll, activeSrv])
 
-  // -- DOCUMENTS LOGIC --
   const { scrollYProgress: docScrollRaw } = useScroll({ target: docsRef, offset: ["start start", "end end"] })
   const docScroll = useSpring(docScrollRaw, springConfig)
   useEffect(() => {
@@ -146,20 +144,22 @@ export function ServicesSection() {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="flex flex-col lg:flex-row items-center gap-12 md:gap-24 w-full"
                 >
+                  {/* Container des images empilées */}
                   <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
                     <motion.div 
                       className={`relative cursor-pointer group ${
                         documents[activeDoc].title === "Votre compte HBL" 
-                        ? "aspect-video w-[300px] sm:w-[400px] md:w-[550px]" 
-                        : "h-[250px] w-[180px] sm:h-[350px] sm:w-[260px] md:h-[480px] md:w-[350px]" 
+                        ? "aspect-video w-[280px] sm:w-[400px] md:w-[500px]" 
+                        : "h-[280px] w-[200px] sm:h-[350px] sm:w-[260px] md:h-[480px] md:w-[350px]" 
                       }`}
                       initial="initial"
                       whileHover="animate"
-                      whileTap="animate" // Permet l'animation au toucher sur mobile
+                      whileTap="animate"
                     >
                       {documents[activeDoc].images.map((img, idx) => {
                         const isBackImage = idx > 0;
-                        
+                        const isAccountSlide = documents[activeDoc].title === "Votre compte HBL";
+
                         return (
                           <motion.div
                             key={img}
@@ -170,15 +170,16 @@ export function ServicesSection() {
                                 x: isBackImage ? -40 : 0, 
                                 y: isBackImage ? -10 : 0,
                                 scale: isBackImage ? 0.95 : 1,
-                                rotate: isBackImage ? -3 : 0,
+                                rotate: isBackImage ? -2 : 0,
                                 opacity: 1
                               },
                               animate: { 
-                                x: isBackImage ? -110 : -10, // Sort encore plus
-                                y: isBackImage ? -20 : 0,
-                                scale: isBackImage ? 1 : 1,
-                                rotate: isBackImage ? -5 : -1,
-                                transition: { duration: 0.4, ease: "backOut" }
+                                // On sort l'image de derrière presque entièrement sur le Web (x: -240)
+                                x: isBackImage ? -240 : -15, 
+                                y: isBackImage ? -30 : 0,
+                                scale: 1,
+                                rotate: isBackImage ? -4 : -1,
+                                transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } // Easing plus doux
                               }
                             }}
                           >
@@ -186,7 +187,7 @@ export function ServicesSection() {
                               src={img} 
                               alt={`document-${idx}`} 
                               fill 
-                              className="object-cover" 
+                              className={isAccountSlide ? "object-contain bg-slate-50" : "object-cover"} 
                             />
                             {isBackImage && (
                               <motion.div 
@@ -203,7 +204,8 @@ export function ServicesSection() {
                     </motion.div>
                   </div>
 
-                  <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4 md:space-y-6">
+                  {/* Contenu Texte */}
+                  <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4 md:space-y-6 lg:pl-12">
                     <div className="inline-block px-3 py-1 bg-primary/10 rounded-full">
                       <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-widest">
                         {documents[activeDoc].category}
