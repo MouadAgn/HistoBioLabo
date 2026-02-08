@@ -6,10 +6,13 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { usePathname, useRouter } from "next/navigation"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   // Effet pour détecter le scroll
   useEffect(() => {
@@ -25,6 +28,32 @@ export function Header() {
     { name: "Qualité", href: "/#about" },
     { name: "Contact", href: "/contact" },
   ]
+
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("/#")) {
+      setIsOpen(false)
+      return
+    }
+
+    event.preventDefault()
+    const targetId = href.replace("/#", "")
+
+    if (pathname !== "/") {
+      setIsOpen(false)
+      router.push(href)
+      return
+    }
+
+    const target = document.getElementById(targetId)
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+      window.history.replaceState(null, "", href)
+    }
+    setIsOpen(false)
+  }
 
   return (
     <header 
@@ -65,6 +94,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 className="text-sm font-semibold text-slate-600 hover:text-primary transition-all relative group"
+                onClick={(event) => handleNavClick(event, link.href)}
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
@@ -112,7 +142,7 @@ export function Header() {
                   key={link.name}
                   href={link.href}
                   className="text-lg font-bold text-slate-900 hover:text-primary"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(event) => handleNavClick(event, link.href)}
                 >
                   {link.name}
                 </Link>

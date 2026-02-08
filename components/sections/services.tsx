@@ -73,7 +73,7 @@ export function ServicesSection() {
   return (
     <div className="flex flex-col bg-white">
       {/* SECTION 1 : SERVICES */}
-      <section ref={servicesRef} className="relative h-[600vh] md:h-[500vh]">
+      <section id="services" ref={servicesRef} className="relative h-[600vh] md:h-[500vh]">
         <div className="sticky top-0 min-h-screen flex flex-col justify-start md:justify-center overflow-hidden bg-white pt-24 md:pt-0 text-slate-900">
           <div className="max-w-7xl mx-auto w-full px-6">
             <div className="text-center mb-8 md:mb-12">

@@ -16,7 +16,7 @@ const specializations = [
 
 export function SpecializationsSection() {
   return (
-    <section className="py-24 lg:py-32 bg-white">
+    <section id="specializations" className="py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
