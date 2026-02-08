@@ -122,47 +122,6 @@ export function TeamSection() {
           </motion.div>
         </div>
 
-        {/* Section Preuves & Crédibilité - Nouveau Layout épuré */}
-        <div className="mt-32">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : {}}
-            className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
-          >
-            <h3 className="text-3xl font-bold text-slate-900 tracking-tight">
-              Preuves & <span className="text-primary">crédibilité</span>
-            </h3>
-            <div className="h-px flex-grow bg-slate-100 mx-8 hidden lg:block" />
-            <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">
-              Standard d'excellence
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              { t: "Chiffres clés", d: "Double lecture et taux de relecture suivis." },
-              { t: "Comptes rendus", d: "Exemples illustrant la clarté et la structure." },
-              { t: "Galerie d'images", d: "Images nettes partageables via WhatsApp." },
-              { t: "Témoignages", d: "Avis de prescripteurs et logos partenaires." }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className="flex flex-col group cursor-default"
-              >
-                <div className="h-1 w-8 bg-slate-200 group-hover:w-full group-hover:bg-primary transition-all duration-500 mb-6" />
-                <h4 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors tracking-tight">
-                  {item.t}
-                </h4>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {item.description || item.d}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )

@@ -111,7 +111,7 @@ export function DelaysSection() {
           {[
             { icon: Truck, label: "Logistique", text: "Coursier disponible" },
             { icon: Package, label: "Kits", text: "Prélèvements prêts" },
-            { icon: Calendar, label: "Réception", text: "Lun-Ven 08H00-19H30" }
+            { icon: Calendar, label: "Réception", text: "Lun-Ven : 08H00-19H30 | Sam : réception jusqu'à 18h" }
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-3 group">
               <item.icon className="text-primary/40 group-hover:text-primary transition-colors" size={20} />
