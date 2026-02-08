@@ -143,7 +143,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-primary hover:text-white transition-all duration-300 underline underline-offset-4 decoration-primary/50 hover:decoration-white font-bold tracking-tight shadow-primary/20 drop-shadow-sm"
               >
-                www.wemarkyou.com
+                WeMarkYou
               </a>
             </p>
           </div>

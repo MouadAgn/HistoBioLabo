@@ -40,19 +40,23 @@ export function Header() {
 
     event.preventDefault()
     const targetId = href.replace("/#", "")
+    setIsOpen(false)
 
     if (pathname !== "/") {
-      setIsOpen(false)
       router.push(href)
       return
     }
 
-    const target = document.getElementById(targetId)
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" })
-      window.history.replaceState(null, "", href)
-    }
-    setIsOpen(false)
+    // Allow menu close animation to finish before scrolling.
+    window.setTimeout(() => {
+      const target = document.getElementById(targetId)
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+        window.history.replaceState(null, "", href)
+      } else {
+        window.location.hash = targetId
+      }
+    }, 0)
   }
 
   return (
