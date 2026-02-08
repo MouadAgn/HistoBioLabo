@@ -33,13 +33,11 @@ const features = [
 
 export function DelaysSection() {
   return (
-    /* Réduction du padding vertical (py-16 au lieu de py-24) */
     <section className="py-16 lg:py-16 bg-slate-50/80 border-y border-slate-200/60 relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#022c37 1px, transparent 1px)', size: '20px 20px' }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Réduction de la marge basse du header (mb-12 au lieu de mb-20) */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -101,21 +99,21 @@ export function DelaysSection() {
           ))}
         </div>
 
-        {/* Réduction de la marge haute du footer bar (mt-12 au lieu de mt-20) et du padding py-6 */}
+        {/* SECTION BASSE MODIFIÉE POUR LE CENTRAGE MOBILE */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 flex flex-wrap justify-center gap-x-12 gap-y-6 py-8 border-t border-slate-200"
+          className="mt-12 flex flex-col md:flex-row flex-wrap justify-center items-center md:items-start gap-x-12 gap-y-8 py-8 border-t border-slate-200 text-center md:text-left"
         >
           {[
             { icon: Truck, label: "Logistique", text: "Coursier disponible" },
             { icon: Package, label: "Kits", text: "Prélèvements prêts" },
             { icon: Calendar, label: "Réception", text: "Lun-Ven : 08H00-19H30 | Sam : réception jusqu'à 18h" }
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 group">
+            <div key={i} className="flex flex-col md:flex-row items-center gap-3 group">
               <item.icon className="text-primary/40 group-hover:text-primary transition-colors" size={20} />
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center md:items-start">
                 <span className="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">{item.label}</span>
                 <span className="text-sm font-semibold text-slate-700">{item.text}</span>
               </div>
