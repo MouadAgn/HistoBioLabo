@@ -48,11 +48,11 @@ export function CTASection() {
             {/* Bouton Téléphone */}
             <motion.a 
               whileHover={{ y: -2 }}
-              href="tel:+212631215723"
+              href="tel:+212775904761"
               className="w-full md:w-auto text-slate-600 hover:text-primary font-bold transition-colors flex items-center justify-center gap-3 px-6 h-16 border-2 border-slate-100 rounded-2xl bg-white/50 backdrop-blur-sm"
             >
               <Phone className="w-5 h-5" />
-              +212 6 31 21 57 23
+              +212 7 75 90 47 61
             </motion.a>
 
             {/* Bouton Localisation */}

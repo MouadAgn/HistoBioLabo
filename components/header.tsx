@@ -75,7 +75,7 @@ export function Header() {
           {/* CTA Section */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="https://wa.me/212631215723"
+              href="https://wa.me/212775904761"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -117,7 +117,7 @@ export function Header() {
                   {link.name}
                 </Link>
               ))}
-              <a href="https://wa.me/212631215723" className="pt-4">
+              <a href="https://wa.me/212775904761" className="pt-4">
                 <Button className="w-full h-14 rounded-2xl bg-primary text-white text-lg gap-2">
                   <Phone className="w-5 h-5" />
                   Contactez-nous

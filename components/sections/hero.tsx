@@ -44,7 +44,7 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/212631215723"
+                href="https://wa.me/212775904761"
                 target="_blank"
                 rel="noopener noreferrer"
               >

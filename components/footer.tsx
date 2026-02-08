@@ -37,7 +37,7 @@ export function Footer() {
                  <Globe size={16} className="text-slate-400 group-hover:text-white" />
                </a>
                <a 
-                 href="https://wa.me/212631215723" 
+                 href="https://wa.me/212775904761" 
                  className="w-9 h-9 rounded-xl bg-slate-800/50 border border-slate-700 flex items-center justify-center hover:bg-emerald-500 hover:border-emerald-500 hover:-translate-y-1 transition-all duration-300 group"
                  aria-label="WhatsApp"
                >
@@ -105,11 +105,11 @@ export function Footer() {
                 </div>
               </div>
               
-              <a href="tel:+212631215723" className="flex items-center gap-4 group w-fit">
+              <a href="tel:+212775904761" className="flex items-center gap-4 group w-fit">
                 <div className="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm">
                   <Phone size={18} />
                 </div>
-                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors">+212 6 31 21 57 23</span>
+                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors">+212 7 75 90 47 61</span>
               </a>
 
               <div className="flex items-start gap-4">
@@ -117,8 +117,10 @@ export function Footer() {
                   <Clock size={18} />
                 </div>
                 <div className="text-sm">
-                  <p className="text-slate-200 font-bold">Réception continue</p>
-                  <p className="text-slate-500 text-xs mt-0.5 tracking-wide">LUN - VEN : 08H30 - 18H30</p>
+                  <p className="text-slate-200 font-bold">Horaires de réception</p>
+                  <p className="text-slate-500 text-xs mt-0.5 tracking-wide">LUN - VEN : 08H00 - 19H30</p>
+                  <p className="text-slate-500 text-xs tracking-wide">SAM : 08H00 - 13H00</p>
+                  <p className="text-slate-500 text-xs tracking-wide">DIM : Fermé</p>
                 </div>
               </div>
             </div>

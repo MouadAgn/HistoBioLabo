@@ -58,7 +58,7 @@ export default function ContactPage() {
                       Le moyen le plus rapide pour nous contacter. Envoyez-nous un message et recevez une réponse en quelques minutes.
                     </p>
                     <a
-                      href="https://wa.me/212631215723"
+                      href="https://wa.me/212775904761"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -83,15 +83,26 @@ export default function ContactPage() {
                     <p className="text-muted-foreground">
                       Appelez-nous directement pour une conversation immédiate avec notre équipe.
                     </p>
-                    <a href="tel:+212631215723">
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-                      >
-                        <Phone className="w-5 h-5" />
-                        +212 6 31 21 57 23
-                      </Button>
-                    </a>
+                    <div className="space-y-2">
+                      <a href="tel:+212775904761" className="block">
+                        <Button
+                          variant="outline"
+                          className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+                        >
+                          <Phone className="w-5 h-5" />
+                          +212 7 75 90 47 61
+                        </Button>
+                      </a>
+                      <a href="tel:+212528295728" className="block">
+                        <Button
+                          variant="outline"
+                          className="w-full gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+                        >
+                          <Phone className="w-5 h-5" />
+                          Fix : 05 28 29 57 28
+                        </Button>
+                      </a>
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -136,7 +147,7 @@ export default function ContactPage() {
                     <CardContent className="space-y-6">
                       <div className="aspect-video w-full bg-secondary rounded-lg overflow-hidden">
                         <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3440.123456789!2d-9.5!3d30.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDI0JzAwLjAiTiA5wrAzMCcwMC4wIlc!5e0!3m2!1sfr!2sma!4v1234567890"
+                          src="https://www.google.com/maps?q=CCH9%2BM9W%2C%20Agadir%2080000&output=embed"
                           width="100%"
                           height="100%"
                           style={{ border: 0 }}
@@ -155,8 +166,9 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <p className="font-semibold text-foreground mb-1">Horaires de réception</p>
-                            <p className="text-sm text-muted-foreground leading-relaxed">Réception étendue</p>
-                            <p className="text-sm text-muted-foreground leading-relaxed">Contactez-nous pour les détails</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">LUN - VEN : 08H00 - 19H30</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">SAM : 08H00 - 13H00</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">DIM : Fermé</p>
                           </div>
                         </div>
 
@@ -177,7 +189,7 @@ export default function ContactPage() {
                           Pour les urgences ou demandes prioritaires, utilisez notre circuit URGENT dédié.
                         </p>
                         <a
-                          href="https://wa.me/212631215723?text=Bonjour,%20j'ai%20une%20demande%20urgente"
+                          href="https://wa.me/212775904761?text=Bonjour,%20j'ai%20une%20demande%20urgente"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
