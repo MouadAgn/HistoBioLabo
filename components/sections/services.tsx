@@ -168,7 +168,7 @@ export function ServicesSection() {
                     <h3 className="text-2xl md:text-5xl font-bold tracking-tighter">{documents[activeDoc].title}</h3>
                     <p className="text-sm md:text-xl text-slate-500 max-w-xl">{documents[activeDoc].description}</p>
                     {documents[activeDoc].downloadable && (
-                      <a href={documents[activeDoc].images[0]} download className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white active:scale-95">Télécharger le formulaire</a>
+                      <a href={documents[activeDoc].images[0]} download className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white active:scale-95">Document pdf a télécharger </a>
                     )}
                     <div className="flex justify-center lg:justify-start gap-2 pt-4">
                       {documents.map((_, i) => (
