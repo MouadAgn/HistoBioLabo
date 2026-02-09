@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Ajout du Smooth Scroll global */
+html {
+  scroll-behavior: smooth;
+  /* Optimisation de la fluidité sur les navigateurs web */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :root {
   --background: oklch(0.99 0.002 200);
   --foreground: oklch(0.2 0.04 220);
