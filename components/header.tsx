@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   ChevronDown,
   FlaskConical,
+  ArrowRight,
   Menu,
   MessageCircle,
   Microscope,
@@ -203,6 +204,19 @@ export function Header() {
           {/* CTA Section */}
           <div className="hidden md:flex items-center gap-4">
             <a
+              href="https://pathonova.com/histobiolabo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="outline"
+                className="rounded-full gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              >
+                Espace médecin
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </a>
+            <a
               href="https://wa.me/212775904761"
               target="_blank"
               rel="noopener noreferrer"
@@ -234,7 +248,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
-            <nav className="flex flex-col px-6 py-8 gap-6 text-center">
+            <nav className="flex flex-col px-6 py-6 gap-4 text-center">
               <button
                 type="button"
                 className="mx-auto flex w-full items-center justify-center gap-2 text-center text-lg font-bold text-slate-900"
@@ -285,12 +299,24 @@ export function Header() {
                   {link.name}
                 </Link>
               ))}
-              <a href="https://wa.me/212775904761" className="pt-4">
-                <Button className="w-full h-14 rounded-2xl bg-primary text-white text-lg gap-2">
-                  <Phone className="w-5 h-5" />
-                  Contactez-nous
-                </Button>
-              </a>
+              <div className="flex flex-col gap-3 pt-2">
+                <a
+                  href="https://pathonova.com/histobiolabo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="w-full h-12 rounded-2xl border border-primary bg-transparent text-primary text-base gap-2 hover:bg-primary hover:text-primary-foreground">
+                    Espace médecin
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </a>
+                <a href="https://wa.me/212775904761">
+                  <Button className="w-full h-14 rounded-2xl bg-primary text-white text-lg gap-2">
+                    <Phone className="w-5 h-5" />
+                    Contactez-nous
+                  </Button>
+                </a>
+              </div>
             </nav>
           </motion.div>
         )}
