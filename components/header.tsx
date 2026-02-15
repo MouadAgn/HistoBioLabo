@@ -4,13 +4,32 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Phone, MessageCircle } from "lucide-react"
+import {
+  BadgeCheck,
+  CheckCircle2,
+  ChevronDown,
+  FlaskConical,
+  Menu,
+  MessageCircle,
+  Microscope,
+  Phone,
+  ScanLine,
+  ShieldCheck,
+  Sparkles,
+  TestTube2,
+  X,
+  Zap,
+  type LucideIcon,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "next/navigation"
+import { activities } from "@/lib/activities"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -21,13 +40,35 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isOpen) {
+      setIsMobileServicesOpen(false)
+    }
+  }, [isOpen])
+
   const navLinks = [
     { name: "Accueil", href: "/" },
-    { name: "Activités", href: "/#services" },
     { name: "Expertise", href: "/#specializations" },
     { name: "Qualité", href: "/#about" },
     { name: "Contact", href: "/contact" },
   ]
+
+  const activityIcons: Record<string, LucideIcon> = {
+    Microscope,
+    ScanLine,
+    TestTube2,
+    BadgeCheck,
+    ShieldCheck,
+    Zap,
+    FlaskConical,
+    Sparkles,
+    CheckCircle2,
+  }
+
+  const activityLinks = activities.map((activity) => ({
+    ...activity,
+    icon: activityIcons[activity.icon] ?? Microscope,
+  }))
 
   const handleNavClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -93,6 +134,59 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
+            <div
+              className="relative"
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+            >
+              <button
+                type="button"
+                className="text-sm font-semibold text-slate-600 hover:text-primary transition-all relative group inline-flex items-center gap-2"
+                onClick={() => setIsServicesOpen((prev) => !prev)}
+                onFocus={() => setIsServicesOpen(true)}
+              >
+                Activités
+                <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </button>
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98, y: 6 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="absolute left-0 top-10 w-[360px] rounded-3xl border border-slate-100 bg-white p-4 shadow-xl shadow-slate-200"
+                  >
+                    <div className="grid gap-2">
+                      {activityLinks.map((activity) => {
+                        const Icon = activity.icon
+                        return (
+                          <Link
+                            key={activity.slug}
+                            href={`/activites/${activity.slug}`}
+                            onClick={() => setIsServicesOpen(false)}
+                            className="group flex items-start gap-3 rounded-2xl px-3 py-2 transition-colors hover:bg-slate-50"
+                          >
+                            <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                              <Icon className="h-4 w-4" />
+                            </span>
+                            <span className="flex flex-col text-left">
+                              <span className="text-sm font-semibold text-slate-900 group-hover:text-primary">
+                                {activity.title}
+                              </span>
+                              <span className="text-xs text-slate-500">
+                                {activity.shortDescription}
+                              </span>
+                            </span>
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -141,6 +235,46 @@ export function Header() {
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
             <nav className="flex flex-col px-6 py-8 gap-6 text-center">
+              <button
+                type="button"
+                className="mx-auto flex w-full items-center justify-center gap-2 text-center text-lg font-bold text-slate-900"
+                onClick={() => setIsMobileServicesOpen((prev) => !prev)}
+              >
+                Activités
+                <ChevronDown className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+              <AnimatePresence>
+                {isMobileServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-2 flex flex-col gap-2 rounded-2xl bg-slate-50 p-4 text-left">
+                      {activityLinks.map((activity) => {
+                        const Icon = activity.icon
+                        return (
+                          <Link
+                            key={activity.slug}
+                            href={`/activites/${activity.slug}`}
+                            className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-white hover:text-primary"
+                            onClick={() => {
+                              setIsOpen(false)
+                              setIsMobileServicesOpen(false)
+                            }}
+                          >
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                              <Icon className="h-4 w-4" />
+                            </span>
+                            {activity.title}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               {navLinks.map((link) => (
                 <Link
                   key={link.name}

@@ -3,18 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useScroll, useSpring, useMotionValueEvent } from "framer-motion"
 import Image from "next/image"
-
-const services = [
-  { title: "Macroscopie", description: "Analyse macroscopique rigoureuse des pièces pour une orientation précise.", images: ["/images_defilement/1 Macroscopie/1.png"] },
-  { title: "Histopathologie", description: "Colorations et examens histologiques pour un diagnostic fiable.", images: ["/images_defilement/2 Histopathologie/2.jpg"] },
-  { title: "Cytopathologie", description: "Étude cellulaire fine pour le dépistage et le diagnostic précoce.", images: ["/images_defilement/3 Cytopathologie/3.jpg"] },
-  { title: "immunohistochimie", description: "Marquages ciblés pour préciser l’origine et le profil tumoral.", images: ["/images_defilement/4 immunohistochimie/4.jpg"] },
-  { title: "Typage HPV", description: "Détection et typage du papillomavirus humain avec précision.", images: ["/images_defilement/5 Typage HPV/5.png"] },
-  { title: "Circuit urgent", description: "Prélèvements critiques traités en priorité selon l’indication.", images: ["/images_defilement/6 Circuit urgent/6.png"] },
-  { title: "Matériel et techniques", description: "Plateau technique performant et contrôles qualité systématiques.", images: ["/images_defilement/7 Matériel et techniques/7.jpg"] },
-  { title: "Innovation et suivi", description: "Intégration d’outils modernes pour une traçabilité optimale.", images: ["/documents/1 Photos macroscopiques jointes au CR/3B.jpg", "/documents/1 Photos macroscopiques jointes au CR/2B.png"] },
-  { title: "Rigueur Diagnostiques", description: "Relecture et vérifications pour garantir la précision finale.", images: ["/images_defilement/9 Rigueur Diagnostiques/9.png"] },
-]
+import { activities } from "@/lib/activities"
 
 const documents = [
   { title: "Demande examen", category: "Formulaire", description: "Formulaire de demande d'examen anatomopathologique.", images: ["/Demande examen anatomopathologique.jpg"], downloadable: true },
@@ -52,7 +41,7 @@ export function ServicesSection() {
   const srvScroll = useSpring(srvScrollRaw, springConfig)
 
   useMotionValueEvent(srvScroll, "change", (latest) => {
-    const index = Math.min(Math.floor(latest * services.length), services.length - 1)
+    const index = Math.min(Math.floor(latest * activities.length), activities.length - 1)
     if (index !== activeSrv && index >= 0) setActiveSrv(index)
   })
 
@@ -94,30 +83,30 @@ export function ServicesSection() {
                   className="flex flex-col lg:flex-row gap-6 md:gap-24 items-center w-full"
                 >
                   <div className="w-full lg:w-3/5">
-                    <div className={`relative w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-white transition-all duration-500 ${
-                        services[activeSrv].images.length > 1 ? "h-[250px] sm:h-[350px] md:h-[520px]" : "h-[220px] sm:h-[300px] md:h-[480px]"
+                  <div className={`relative w-full rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-white transition-all duration-500 ${
+                        activities[activeSrv].images.length > 1 ? "h-[250px] sm:h-[350px] md:h-[520px]" : "h-[220px] sm:h-[300px] md:h-[480px]"
                     }`}>
-                      {services[activeSrv].images.length > 1 ? (
+                      {activities[activeSrv].images.length > 1 ? (
                         <div className="grid h-full w-full grid-cols-2 gap-2 p-2 md:gap-4 md:p-4">
-                          {services[activeSrv].images.map((img) => (
+                          {activities[activeSrv].images.map((img) => (
                             <div key={img} className="relative h-full w-full overflow-hidden rounded-xl md:rounded-2xl border border-slate-50 bg-white shadow-inner">
                               <Image src={img} alt="service detail" fill className="object-contain" priority />
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <Image src={services[activeSrv].images[0]} alt="service" fill className="object-cover" priority />
+                        <Image src={activities[activeSrv].images[0]} alt="service" fill className="object-cover" priority />
                       )}
                     </div>
                   </div>
                   
                   <div className="w-full lg:w-2/5 space-y-4 md:space-y-6 text-center lg:text-left">
-                    <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">Expertise {activeSrv + 1} / {services.length}</span>
-                    <h3 className="text-2xl md:text-5xl font-bold leading-tight">{services[activeSrv].title}</h3>
-                    <p className="text-sm md:text-lg text-slate-500">{services[activeSrv].description}</p>
+                    <span className="text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">Expertise {activeSrv + 1} / {activities.length}</span>
+                    <h3 className="text-2xl md:text-5xl font-bold leading-tight">{activities[activeSrv].title}</h3>
+                    <p className="text-sm md:text-lg text-slate-500">{activities[activeSrv].shortDescription}</p>
                     <div className="flex justify-center lg:justify-start gap-1.5 md:gap-2">
-                      {services.map((_, i) => (
-                        <button key={i} onClick={() => scrollToIndex(servicesRef, i, services.length)} className={`h-2 rounded-full transition-all duration-300 ${activeSrv === i ? "w-8 md:w-10 bg-primary" : "w-2 bg-slate-200 hover:bg-slate-300"}`} />
+                      {activities.map((_, i) => (
+                        <button key={i} onClick={() => scrollToIndex(servicesRef, i, activities.length)} className={`h-2 rounded-full transition-all duration-300 ${activeSrv === i ? "w-8 md:w-10 bg-primary" : "w-2 bg-slate-200 hover:bg-slate-300"}`} />
                       ))}
                     </div>
                   </div>
