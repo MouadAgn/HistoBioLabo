@@ -47,6 +47,19 @@ export function Header() {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = ""
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isOpen])
+
   const navLinks = [
     { name: "Accueil", href: "/" },
     { name: "Expertise", href: "/#specializations" },
@@ -246,9 +259,9 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
+            className="md:hidden bg-white border-b border-slate-100 overflow-hidden max-h-screen"
           >
-            <nav className="flex flex-col px-6 py-6 gap-4 text-center">
+            <nav className="flex flex-col px-6 py-6 gap-4 text-center max-h-[calc(100vh-80px)] overflow-y-auto overscroll-contain">
               <button
                 type="button"
                 className="mx-auto flex w-full items-center justify-center gap-2 text-center text-lg font-bold text-slate-900"
