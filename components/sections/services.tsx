@@ -4,14 +4,7 @@ import { useRef, useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence, useScroll, useSpring, useMotionValueEvent } from "framer-motion"
 import Image from "next/image"
 import { activities } from "@/lib/activities"
-
-const documents = [
-  { title: "Demande examen", category: "Formulaire", description: "Formulaire de demande d'examen anatomopathologique.", images: ["/Demande examen anatomopathologique.jpg"], downloadable: true },
-  { title: "Photos macroscopiques", category: "Imagerie", description: "Visualisation détaillée des pièces opératoires et des prélèvements à l'œil nu.", images: ["/documents/1 Photos macroscopiques jointes au CR/2B.png", "/documents/1 Photos macroscopiques jointes au CR/3B.jpg"] },
-  { title: "Photos microscopiques", category: "Diagnostic", description: "Captures haute résolution des coupes histologiques analysées au microscope.", images: ["/documents/2 Photos microscopiques jointes au CR/1B.png", "/documents/2 Photos microscopiques jointes au CR/2B.png"] },
-  { title: "Documents envoyés", category: "Communication", description: "Accès rapide aux rapports et documents administratifs transmis de manière sécurisée.", images: ["/documents/3 Documents envoyé directement/photo_2026-02-06_10-25-56 (2).jpg", "/documents/3 Documents envoyé directement/photo_2026-02-06_10-25-56.jpg"] },
-  { title: "Votre compte HBL", category: "Espace Client", description: "Interface personnalisée permettant la gestion de vos analyses et l'historique de vos examens.", images: ["/documents/4 Votre compte HBL/Screenshot 2026-02-06 113128.png"] }
-]
+import { documents } from "@/lib/documents"
 
 export function ServicesSection() {
   const servicesRef = useRef<HTMLDivElement>(null)
@@ -187,7 +180,13 @@ export function ServicesSection() {
                     <h3 className="text-2xl md:text-5xl font-bold tracking-tighter">{documents[activeDoc].title}</h3>
                     <p className="text-sm md:text-xl text-slate-500 max-w-xl">{documents[activeDoc].description}</p>
                     {documents[activeDoc].downloadable && (
-                      <a href={documents[activeDoc].images[0]} download className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white active:scale-95">Document PDF à télécharger </a>
+                      <a
+                        href={documents[activeDoc].downloadUrl ?? documents[activeDoc].images[0]}
+                        download
+                        className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white active:scale-95"
+                      >
+                        Document PDF à télécharger
+                      </a>
                     )}
                     <div className="flex justify-center lg:justify-start gap-2 pt-4">
                       {documents.map((_, i) => (

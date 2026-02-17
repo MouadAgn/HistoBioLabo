@@ -10,11 +10,11 @@ export function Footer() {
     <footer className="bg-[#0f172a] text-slate-300 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         
-        {/* Section Principale : 4 Colonnes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        {/* Section Principale : 5 Colonnes pour inclure toutes les sections */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           
           {/* Colonne 1: Identité */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-1">
             <Link href="/" className="group inline-block">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold tracking-tighter text-white transition-colors group-hover:text-primary">
@@ -26,7 +26,7 @@ export function Footer() {
               </p>
             </Link>
             <p className="text-sm leading-relaxed text-slate-400">
-              Expertise diagnostique de pointe, double lecture systématique et délais optimisés pour une prise en charge d'excellence à Agadir.
+              Expertise diagnostique de pointe et délais optimisés pour une prise en charge d'excellence à Agadir.
             </p>
             <div className="flex items-center gap-4 pt-2">
                <a 
@@ -46,15 +46,14 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Colonne 2: Navigation */}
+          {/* Colonne 2: Navigation Rapide */}
           <div className="space-y-6">
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Navigation</h3>
             <nav className="flex flex-col gap-3">
               {[
                 { name: "Accueil", href: "/" },
-                { name: "Nos Services", href: "/#services" },
                 { name: "Expertise", href: "/#specializations" },
-                { name: "Qualité & Sécurité", href: "/#about" },
+                { name: "Qualité", href: "/#about" },
                 { name: "Contact", href: "/contact" },
               ].map((link) => (
                 <Link 
@@ -72,36 +71,71 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Colonne 3: Domaines d'expertise */}
+          {/* Colonne 3: Nos Activités (9 Liens) */}
           <div className="space-y-6">
-            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Domaines</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Activités</h3>
+            <nav className="flex flex-col gap-3">
               {[
-                "Histopathologie",
-                "Cytopathologie",
-                "Immunohistochimie",
-                "Pathologie Moléculaire",
-                "Double Lecture",
-              ].map((item) => (
-                <li key={item} className="text-sm text-slate-400 flex items-center gap-3 group cursor-default">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-primary transition-colors duration-300" />
-                  <span className="group-hover:text-slate-200 transition-colors">{item}</span>
-                </li>
+                { name: "Macroscopie", href: "/activites/macroscopie" },
+                { name: "Histopathologie", href: "/activites/histopathologie" },
+                { name: "Cytopathologie", href: "/activites/cytopathologie" },
+                { name: "Immunohistochimie", href: "/activites/immunohistochimie" },
+                { name: "Typage HPV", href: "/activites/typage-hpv" },
+                { name: "Circuit Urgent", href: "/activites/circuit-urgent" },
+                { name: "Techniques", href: "/activites/materiel-et-techniques" },
+                { name: "Innovation", href: "/activites/innovation-et-suivi" },
+                { name: "Rigueur", href: "/activites/rigueur-diagnostiques" },
+              ].map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  className="text-[13px] text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1 group w-fit"
+                >
+                  <span className="relative">
+                    {link.name}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                  </span>
+                </Link>
               ))}
-            </ul>
+            </nav>
           </div>
 
-          {/* Colonne 4: Contact & Urgence */}
+          {/* Colonne 4: Espace Documentaire */}
           <div className="space-y-6">
-            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Urgence & Contact</h3>
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Documents</h3>
+            <nav className="flex flex-col gap-3">
+              {[
+                { name: "Demande examen", href: "/documents/demande-examen" },
+                { name: "Photos macroscopiques", href: "/documents/photos-macroscopiques" },
+                { name: "Photos microscopiques", href: "/documents/photos-microscopiques" },
+                { name: "Documents envoyés", href: "/documents/documents-envoyes" },
+                { name: "Compte HBL", href: "/documents/compte-hbl" },
+              ].map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-slate-400 hover:text-white transition-colors duration-200 flex items-center gap-1 group w-fit"
+                >
+                  <span className="relative">
+                    {link.name}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                  </span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Colonne 5: Contact & Urgence */}
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-white">Contact</h3>
             <div className="space-y-5">
               <div className="flex items-start gap-4 group">
                 <div className="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm">
                   <MapPin size={18} />
                 </div>
                 <div className="text-sm leading-snug">
-                  <p className="text-slate-300 font-medium">CCH9+M9W, Agadir 80000</p>
-                  <p className="text-slate-500 italic text-xs mt-1 transition-colors group-hover:text-slate-400">Entrée Clinique spécialisée</p>
+                  <p className="text-slate-300 font-medium">CCH9+M9W, Agadir</p>
+                  <p className="text-slate-500 italic text-xs mt-1">Clinique spécialisée</p>
                 </div>
               </div>
               
@@ -117,10 +151,9 @@ export function Footer() {
                   <Clock size={18} />
                 </div>
                 <div className="text-sm">
-                  <p className="text-slate-200 font-bold">Horaires de réception</p>
-                  <p className="text-slate-500 text-xs mt-0.5 tracking-wide">LUN - VEN : 08H00 - 19H30</p>
-                  <p className="text-slate-500 text-xs tracking-wide">SAM : 08H00 - 13H00</p>
-                  <p className="text-slate-500 text-xs tracking-wide">DIM : Fermé</p>
+                  <p className="text-slate-200 font-bold">Réception</p>
+                  <p className="text-slate-500 text-[11px] leading-tight">Lun-Ven: 08h00-19h30</p>
+                  <p className="text-slate-500 text-[11px]">Sam: 08h00-13h00</p>
                 </div>
               </div>
             </div>
@@ -129,12 +162,10 @@ export function Footer() {
 
         {/* Section Copyright & Signature - Centrée et Lumineuse */}
         <div className="pt-10 border-t border-slate-800/60 flex flex-col items-center gap-6 text-center">
-          
           <div className="space-y-3">
             <p className="text-[12px] md:text-sm text-slate-400 font-medium tracking-wide">
               © {currentYear} <span className="text-white">HISTOBIOLABO AGADIR</span>. TOUS DROITS RÉSERVÉS.
             </p>
-            
             <p className="text-sm md:text-lg font-medium text-slate-300">
               Conçu avec expertise par{" "}
               <a 
@@ -148,7 +179,6 @@ export function Footer() {
             </p>
           </div>
           
-          {/* Badge Qualité */}
           <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-900/80 border border-slate-700 shadow-xl">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40"></span>
@@ -158,7 +188,6 @@ export function Footer() {
               Système Qualité ISO en vigueur
             </span>
           </div>
-          
         </div>
       </div>
     </footer>
