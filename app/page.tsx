@@ -11,6 +11,7 @@ import { QualitySection } from "@/components/sections/quality"
 import { TeamSection } from "@/components/sections/team"
 import { CTASection } from "@/components/sections/cta"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { EntranceSection } from "@/components/EntranceSection"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <WhatsAppButton />
       <main className="relative z-10">
         <HeroSection />
+        <EntranceSection /> {/* Nouvelle section */}
         <ServicesSection />
         <SpecializationsSection />
         <DelaysSection />
